@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_main_btm_nav_home"
+        android:icon="@mipmap/ic_home_foreground"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/menu_main_btm_nav_search"
+        android:icon="@mipmap/ic_search_foreground"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="검색" />
+
+    <item
+        android:id="@+id/menu_main_btm_nav_share"
+        android:icon="@mipmap/ic_mark_foreground"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="즐겨찾기" />
+
+    <item
+        android:id="@+id/menu_main_btm_nav_shop"
+        android:icon="@mipmap/ic_shop_foreground"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="주문내역" />
+
+    <item
+        android:id="@+id/menu_main_btm_nav_my_page"
+        android:icon="@mipmap/ic_users_foreground"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:checkable="true"
+        android:title="My 이츠" />
+
+
+</menu>
