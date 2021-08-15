@@ -11,6 +11,7 @@ import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMainBinding
 import com.softsquared.template.kotlin.src.mypage.MyPageFragment
+import com.softsquared.template.kotlin.src.search.SearchFragment
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -31,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     }
                     R.id.menu_main_btm_nav_search -> {
                         supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_frm, MainFragment())
+                            .replace(R.id.main_frm, SearchFragment())
                             .commitAllowingStateLoss()
                         return@OnNavigationItemSelectedListener true
                     }
