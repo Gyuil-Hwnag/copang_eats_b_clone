@@ -14,7 +14,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         super.onCreate(savedInstanceState)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, RegisterActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 1500)
     }

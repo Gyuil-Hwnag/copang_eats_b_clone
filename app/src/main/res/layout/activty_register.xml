@@ -272,7 +272,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coupang Crop. All rights reserved."
+                android:text=" © Coupang Corp. All rights reserved."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:textSize="10dp"

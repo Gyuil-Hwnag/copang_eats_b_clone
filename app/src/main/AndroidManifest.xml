@@ -30,9 +30,23 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".src.location.LocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".src.map.MapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".src.register.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="k19wwgft7v" />
     </application>
 
 </manifest>
