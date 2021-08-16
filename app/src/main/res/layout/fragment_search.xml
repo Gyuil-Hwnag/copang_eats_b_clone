@@ -7,11 +7,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/srarch_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         app:layout_constraintTop_toTopOf="parent"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:paddingTop="8dp"
+        android:paddingTop="5dp"
         android:paddingBottom="5dp">
 
         <EditText
@@ -28,6 +28,7 @@
             android:paddingLeft="15dp"
             android:layout_marginRight="30dp"
             android:textSize="18dp"
+            android:layout_marginTop="3dp"
             android:background="@drawable/edit_rounded_shape">
         </EditText>
         <ImageView

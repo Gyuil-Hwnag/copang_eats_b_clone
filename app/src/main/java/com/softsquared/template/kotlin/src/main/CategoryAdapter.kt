@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.src.main.model.Category
+import com.softsquared.template.kotlin.src.searchDetail.SearchDetailActivity
 
 class CategoryAdapter(private val itemList : ArrayList<Category>) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>(){
@@ -27,20 +28,16 @@ class CategoryAdapter(private val itemList : ArrayList<Category>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.category_img.setImageResource(itemList.get(position).sea_Img)
-        holder.category_txt.setText(itemList.get(position).sea_name)
+        holder.category_img.setImageResource(itemList.get(position).category_Img)
+        holder.category_txt.setText(itemList.get(position).category_name)
 
 
-//        holder.itemView.setOnClickListener {
-//            var intent = Intent(holder.itemView?.context, SearchDetailActivity::class.java)
-//            val sea_name = itemList.get(position).sea_name
-//            val sea_img = itemList.get(position).sea_Img
-//            val sea_weather = itemList.get(position).sea_weather
-//            intent.putExtra("sea_name", sea_name)
-//            intent.putExtra("sea_Img", sea_img)
-//            intent.putExtra("sea_weather", sea_weather)
-//            ContextCompat.startActivity(holder.itemView.context, intent, null)
-//        }
+        holder.itemView.setOnClickListener {
+            var intent = Intent(holder.itemView?.context, SearchDetailActivity::class.java)
+            val name = itemList.get(position).category_name
+            intent.putExtra("category_name", name)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -43,7 +43,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         categoryList.add(Category(R.drawable.img_category21, "버거"))
         categoryList.add(Category(R.drawable.img_category22, "멕시칸"))
         categoryList.add(Category(R.drawable.img_category23, "도시락"))
-        categoryList.add(Category(R.drawable.img_category24, "쥭"))
+        categoryList.add(Category(R.drawable.img_category24, "죽"))
         categoryList.add(Category(R.drawable.img_category25, "프렌차이즈"))
 
         searCategoryAdapter = SearchCategoryAdapter(categoryList)
