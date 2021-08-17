@@ -1,5 +1,6 @@
 package com.softsquared.template.kotlin.src.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMainBinding
 import com.softsquared.template.kotlin.src.mypage.MyPageFragment
+import com.softsquared.template.kotlin.src.register.RegisterActivity
 import com.softsquared.template.kotlin.src.search.SearchFragment
 
 
@@ -43,10 +45,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.menu_main_btm_nav_shop -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_frm, MainFragment())
-                            .commitAllowingStateLoss()
-                        return@OnNavigationItemSelectedListener true
+//                        supportFragmentManager.beginTransaction()
+//                            .replace(R.id.main_frm, MainFragment())
+//                            .commitAllowingStateLoss()
+//                        return@OnNavigationItemSelectedListener true
+                        var intent = Intent(this, RegisterActivity::class.java)
+                        startActivity(intent)
                     }
                     R.id.menu_main_btm_nav_my_page -> {
                         supportFragmentManager.beginTransaction()

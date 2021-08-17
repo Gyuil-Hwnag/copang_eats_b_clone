@@ -166,6 +166,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:padding="15dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/register_allow_contents"
                 app:layout_constraintTop_toBottomOf="@id/allow_all_main">
 
                 <CheckBox
@@ -202,6 +205,16 @@
                     app:layout_constraintLeft_toRightOf="@id/allow2_radio"
                     app:layout_constraintTop_toBottomOf="@id/allow1_radio"></TextView>
 
+                <ImageView
+                    android:id="@+id/btn_detail1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/allow1_radio"
+                    android:src="@mipmap/ic_register_detail_foreground">
+                </ImageView>
+
                 <CheckBox
                     android:id="@+id/allow3_radio"
                     android:layout_width="wrap_content"
@@ -218,6 +231,16 @@
                     android:textColor="@color/black"
                     app:layout_constraintLeft_toRightOf="@id/allow4_radio"
                     app:layout_constraintTop_toBottomOf="@id/allow2_radio"></TextView>
+
+                <ImageView
+                    android:id="@+id/btn_detail2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/allow2_radio"
+                    android:src="@mipmap/ic_register_detail_foreground">
+                </ImageView>
 
                 <CheckBox
                     android:id="@+id/allow4_radio"
@@ -236,6 +259,16 @@
                     app:layout_constraintLeft_toRightOf="@id/allow4_radio"
                     app:layout_constraintTop_toBottomOf="@id/allow3_radio"></TextView>
 
+                <ImageView
+                    android:id="@+id/btn_detail3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/allow3_radio"
+                    android:src="@mipmap/ic_register_detail_foreground">
+                </ImageView>
+
                 <CheckBox
                     android:id="@+id/allow5_radio"
                     android:layout_width="wrap_content"
@@ -253,6 +286,16 @@
                     app:layout_constraintLeft_toRightOf="@id/allow5_radio"
                     app:layout_constraintTop_toBottomOf="@id/allow4_radio"></TextView>
 
+                <ImageView
+                    android:id="@+id/btn_detail4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/allow4_radio"
+                    android:src="@mipmap/ic_register_detail_foreground">
+                </ImageView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
@@ -261,7 +304,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:background="@color/blue"
+                android:background="@color/dark_blue"
                 android:gravity="center"
                 android:padding="15dp"
                 android:text="동의하고 가입하기"
