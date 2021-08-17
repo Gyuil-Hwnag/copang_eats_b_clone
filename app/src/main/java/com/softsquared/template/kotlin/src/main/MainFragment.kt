@@ -14,12 +14,27 @@ import com.softsquared.template.kotlin.config.BaseFragment
 import com.softsquared.template.kotlin.databinding.FragmentMainBinding
 import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.main.model.Category
+import com.softsquared.template.kotlin.src.main.model.Coupon
+import com.softsquared.template.kotlin.src.main.model.best
+import com.softsquared.template.kotlin.src.main.model.new_delivery
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind, R.layout.fragment_main){
 
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var mRecyclerView: RecyclerView
     var categoryList = ArrayList<Category>()
+
+    var bestList = ArrayList<best>()
+    lateinit var bestAdapter: BestAdapter
+    lateinit var bestRecyclerView: RecyclerView
+
+    var couponList = ArrayList<Coupon>()
+    lateinit var couponAdapter: CouponAdapter
+    lateinit var couponRecyclerView: RecyclerView
+
+    var newDeliveryList = ArrayList<new_delivery>()
+    lateinit var newDeliveryAdapter: NewDeliveryAdapter
+    lateinit var newDeliveryRecyclerView: RecyclerView
 
     private val sliderHandler: Handler = Handler()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +69,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         })
 
 
-        // revcycler view
+        // revcycler view category
         categoryList.add(Category(R.drawable.img_category1, "신규 맛집"))
         categoryList.add(Category(R.drawable.img_category2, "1인분"))
         categoryList.add(Category(R.drawable.img_category3, "한식"))
@@ -87,6 +102,34 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         mRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
             false)
 //        mRecyclerView.addItemDecoration(VerticalItemDecorator(20))
+
+        // revcycler view best
+        bestList.add(best(R.drawable.img_category1, "버거킹 약수역점", "0.3Km", "무료배달"))
+
+        bestAdapter = BestAdapter(bestList)
+        bestRecyclerView = binding.recyclerItemBest
+        bestRecyclerView.adapter = bestAdapter
+        bestRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            false)
+
+        // revcycler view coupon
+        couponList.add(Coupon(R.drawable.img_category1, "신규 맛집", "4,000원 할인", R.drawable.img_category1))
+
+        couponAdapter = CouponAdapter(couponList)
+        couponRecyclerView = binding.recyclerItemCoupon
+        couponRecyclerView.adapter = couponAdapter
+        couponRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            false)
+
+        // revcycler view new_delivery
+        newDeliveryList.add(new_delivery(R.drawable.img_category1, "신규 맛집", "0.3Km", "무료배달"))
+
+        newDeliveryAdapter = NewDeliveryAdapter(newDeliveryList)
+        newDeliveryRecyclerView = binding.recyclerItemNew
+        newDeliveryRecyclerView.adapter = newDeliveryAdapter
+        newDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            false)
+
 
         binding.locMain.setOnClickListener {
             var intent = Intent(context, LocationActivity::class.java)

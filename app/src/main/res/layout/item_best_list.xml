@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/img_best"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/img_category1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/txt_best"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/img_best"
+        android:text="신규 맛집"
+        android:textSize="12dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txt_distance"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_best"
+        android:text="0.3Km"
+        android:textSize="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txt_best_status"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_distance"
+        android:text="무료배달"
+        android:textSize="10dp">
+    </TextView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

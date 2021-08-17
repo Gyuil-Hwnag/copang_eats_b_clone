@@ -95,11 +95,41 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/register_btn_gray"
+                app:layout_constraintTop_toBottomOf="@id/recycler_item" />
+
+            <TextView
+                android:id="@+id/txt_best"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line"
+                android:text="인기 프렌차이즈"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:padding="15dp"
+                android:textColor="@color/black">
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_item_best"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txt_best"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="15dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <View
                 android:id="@+id/line1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/gray"
-                app:layout_constraintTop_toBottomOf="@id/recycler_item" />
+                app:layout_constraintTop_toBottomOf="@id/recycler_item_best" />
 
             <ImageView
                 android:id="@+id/banner2"
@@ -117,11 +147,83 @@
                 android:background="@color/gray"
                 app:layout_constraintTop_toBottomOf="@id/banner2" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/delivery_item"
+            <TextView
+                android:id="@+id/txt_coupon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/line2">
+                app:layout_constraintTop_toBottomOf="@id/line2"
+                android:text="기간한정 할인 쿠폰"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:padding="15dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black">
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_item_coupon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txt_coupon"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/recycler_item_coupon" />
+
+            <TextView
+                android:id="@+id/txt_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line3"
+                android:text="새로 들어왔어요!"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
+                android:padding="15dp"
+                android:textColor="@color/black">
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_item_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txt_new"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <View
+                android:id="@+id/line4"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:background="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/recycler_item_new" />
+
+            <TextView
+                android:id="@+id/txt_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line4"
+                android:text="골라먹는 맛집"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
+                android:padding="15dp"
+                android:textColor="@color/black">
+            </TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_item_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/txt_main">
             </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
