@@ -117,6 +117,13 @@
                 android:background="@color/gray"
                 app:layout_constraintTop_toBottomOf="@id/banner2" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/delivery_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line2">
+            </androidx.recyclerview.widget.RecyclerView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
