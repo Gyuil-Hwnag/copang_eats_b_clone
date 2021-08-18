@@ -2,11 +2,14 @@ package com.softsquared.template.kotlin.src.register
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivtyRegisterBinding
 import com.softsquared.template.kotlin.src.main.MainActivity
+import com.softsquared.template.kotlin.src.register.model.PostRegisterRequest
+import com.softsquared.template.kotlin.src.register.model.SignUpResponse
 
-class RegisterActivity : BaseActivity<ActivtyRegisterBinding>(ActivtyRegisterBinding::inflate) {
+class RegisterActivity : BaseActivity<ActivtyRegisterBinding>(ActivtyRegisterBinding::inflate), RegisterView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,5 +49,30 @@ class RegisterActivity : BaseActivity<ActivtyRegisterBinding>(ActivtyRegisterBin
                 showCustomToast("체크목록을 확인하십시오.")
             }
         }
+
+        binding.registerBtn.setOnClickListener {
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
+            val username = binding.name.text.toString()
+            val phoneNumber = binding.phone.text.toString()
+            showCustomToast(phoneNumber)
+            val postRequest = PostRegisterRequest(email = email, password = password,
+                username = username, phonenumber = "010-0000-0000")
+            showLoadingDialog(this)
+            RegisterService(this).tryPostRegisterUp(postRequest)
+        }
+    }
+
+    override fun onPostRegisterSuccess(response: SignUpResponse) {
+        dismissLoadingDialog()
+        binding.registerBtn.text = response.message
+        response.message?.let { showCustomToast(it) }
+        Log.d("success111", "success")
+    }
+
+    override fun onPostRegisterFailure(message: String) {
+        dismissLoadingDialog()
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "fail")
     }
 }
