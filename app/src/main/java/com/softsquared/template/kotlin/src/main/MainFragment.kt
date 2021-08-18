@@ -42,12 +42,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
 
         // 광고베너
         val sliderItems: MutableList<String> = ArrayList()
-        sliderItems.add("https://cdn.pixabay.com/photo/2019/12/26/10/44/horse-4720178_1280.jpg")
-        sliderItems.add("https://cdn.pixabay.com/photo/2020/11/04/15/29/coffee-beans-5712780_1280.jpg")
-        sliderItems.add("https://cdn.pixabay.com/photo/2020/11/10/01/34/pet-5728249_1280.jpg")
-        sliderItems.add("https://cdn.pixabay.com/photo/2020/12/21/19/05/window-5850628_1280.png")
-        sliderItems.add("https://cdn.pixabay.com/photo/2014/03/03/16/15/mosque-279015_1280.jpg")
-        sliderItems.add("https://cdn.pixabay.com/photo/2019/10/15/13/33/red-deer-4551678_1280.jpg")
+        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_002427222_01.jpg")
+        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_002427222_02.jpg")
+        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_002427222.jpg")
         binding.vpImageSlider.setAdapter(SliderAdapter(context!!, binding.vpImageSlider, sliderItems))
         binding.vpImageSlider.setClipToPadding(false)
         binding.vpImageSlider.setClipChildren(false)

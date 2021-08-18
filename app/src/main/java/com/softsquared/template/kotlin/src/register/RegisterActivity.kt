@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivtyRegisterBinding
+import com.softsquared.template.kotlin.src.login.LoginActivity
 import com.softsquared.template.kotlin.src.main.MainActivity
 import com.softsquared.template.kotlin.src.register.model.PostRegisterRequest
 import com.softsquared.template.kotlin.src.register.model.SignUpResponse
@@ -67,6 +68,8 @@ class RegisterActivity : BaseActivity<ActivtyRegisterBinding>(ActivtyRegisterBin
         dismissLoadingDialog()
         binding.registerBtn.text = response.message
         response.message?.let { showCustomToast(it) }
+        var intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
         Log.d("success111", "success")
     }
 

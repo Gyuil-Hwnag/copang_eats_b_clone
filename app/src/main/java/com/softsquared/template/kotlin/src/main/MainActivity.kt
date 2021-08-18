@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMainBinding
+import com.softsquared.template.kotlin.src.login.LoginActivity
 import com.softsquared.template.kotlin.src.mypage.MyPageFragment
 import com.softsquared.template.kotlin.src.register.RegisterActivity
 import com.softsquared.template.kotlin.src.search.SearchFragment
@@ -20,6 +21,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // shared preference
+        var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
+        var editor = text.edit()
+        var login_status_jwt = text.getString("X-ACCESS-TOKEN", null)
+        var login_status_userIdx = text.getInt("userIdx", -1)
+        showCustomToast("jwt : "+login_status_jwt)
 
         supportFragmentManager.beginTransaction().replace(R.id.main_frm, MainFragment()).commitAllowingStateLoss()
 
@@ -45,18 +53,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.menu_main_btm_nav_shop -> {
-//                        supportFragmentManager.beginTransaction()
-//                            .replace(R.id.main_frm, MainFragment())
-//                            .commitAllowingStateLoss()
-//                        return@OnNavigationItemSelectedListener true
-                        var intent = Intent(this, RegisterActivity::class.java)
-                        startActivity(intent)
-                    }
-                    R.id.menu_main_btm_nav_my_page -> {
                         supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_frm, MyPageFragment())
+                            .replace(R.id.main_frm, MainFragment())
                             .commitAllowingStateLoss()
                         return@OnNavigationItemSelectedListener true
+                    }
+                    R.id.menu_main_btm_nav_my_page -> {
+                        if(login_status_jwt == null){
+                            var intent = Intent(this, LoginActivity::class.java)
+                            startActivity(intent)
+                        }
+                        else{
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.main_frm, MyPageFragment())
+                                .commitAllowingStateLoss()
+                            return@OnNavigationItemSelectedListener true
+                        }
                     }
                 }
                 false
