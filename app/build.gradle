@@ -74,6 +74,8 @@ dependencies {
 
     // 네이버 지도 SDK
     implementation("com.naver.maps:map-sdk:3.12.0")
+    // 현재 위치
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
     //네이버 로그인
     implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6'   // import from jcenter
 

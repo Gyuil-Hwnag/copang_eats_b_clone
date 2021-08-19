@@ -1,28 +1,33 @@
 package com.softsquared.template.kotlin.src.map
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.LocationTrackingMode
+import com.naver.maps.map.MapView
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
+import com.naver.maps.map.util.FusedLocationSource
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMapBinding
 import com.softsquared.template.kotlin.src.location.LocationActivity
 
 
-class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate) {
-
-    lateinit var mapView: com.naver.maps.map.MapView
+class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate), OnMapReadyCallback {
+    lateinit private var mapView: MapView
+    lateinit private var locationSource: FusedLocationSource
+    lateinit private var naverMap: NaverMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mapView = binding.mapView
-//        mapView = view.findViewById(R.id.map_view)
-        mapView.onCreate(savedInstanceState)
-
-//        val marker = Marker()
-//        marker.position = LatLng(37.5670135, 126.9783740)
-//        marker.map = mapView
+        mapView!!.onCreate(savedInstanceState)
+        mapView!!.getMapAsync(this)
+        locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
         binding.preBtn.setOnClickListener {
             var intent = Intent(this, LocationActivity::class.java)
@@ -30,18 +35,38 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
         }
     }
 
-//    private fun setMark(marker: Marker, lat: Double, lng: Double, resourceID: Int) {
-//        //원근감 표시
-//        marker.isIconPerspectiveEnabled = true
-//        //아이콘 지정
-//        marker.icon = OverlayImage.fromResource(resourceID)
-//        //마커의 투명도
-//        marker.alpha = 0.8f
-//        //마커 위치
-//        marker.position = LatLng(lat, lng)
-//        //마커 우선순위
-//        marker.zIndex = 10
-//        //마커 표시
-//        marker.map = naverMap
-//    }
+    //위치정보 권한 설정
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
+        if (locationSource!!.onRequestPermissionsResult(
+                requestCode, permissions, grantResults
+            )
+        ) {
+            return
+        }
+        super.onRequestPermissionsResult(
+            requestCode, permissions, grantResults
+        )
+    }
+
+    override fun onMapReady(naverMap: NaverMap) {
+        this.naverMap = naverMap
+        // NaverMap 객체 받아서 NaverMap 객체에 위치 소스 지정
+        naverMap.locationSource = locationSource
+        naverMap.locationTrackingMode = LocationTrackingMode.Follow
+
+        val uiSettings = naverMap.uiSettings
+        uiSettings.isCompassEnabled = false // 나침반
+        uiSettings.isScaleBarEnabled = true // 거리
+        uiSettings.isZoomControlEnabled = false // 줌
+        uiSettings.isLocationButtonEnabled = true // 내가 있는곳
+
+    }
+
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
+    }
 }
+
