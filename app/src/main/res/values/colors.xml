@@ -25,4 +25,6 @@
     <color name="register_img_gray">#ECECEC</color>
     <color name="register_edit2_gray">#E2E1E2</color>
 
+    <color name="map_edit_gray">#BCBBBB</color>
+
 </resources>

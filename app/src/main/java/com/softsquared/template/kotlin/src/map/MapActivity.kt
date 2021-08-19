@@ -2,15 +2,13 @@ package com.softsquared.template.kotlin.src.map
 
 import android.R
 import android.content.Intent
+import android.graphics.PointF
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
+import android.widget.Toast
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.LocationTrackingMode
-import com.naver.maps.map.MapView
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
-import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.OverlayImage
+import com.naver.maps.map.*
+import com.naver.maps.map.NaverMap.OnMapClickListener
 import com.naver.maps.map.util.FusedLocationSource
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMapBinding
@@ -33,6 +31,30 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
             var intent = Intent(this, LocationActivity::class.java)
             startActivity(intent)
         }
+
+
+        // 카메라 위치 이동후 경도, 위도
+//        this.naverMap = naverMap
+        binding.registerBtn.setOnClickListener {
+            var cameraPosition = naverMap.cameraPosition
+            showCustomToast("대상 지점 위도: " + cameraPosition.target.latitude + ", " +
+                    "대상 지점 경도: " + cameraPosition.target.longitude + ", "
+            )
+            Log.d("position!!","대상 지점 위도: " + cameraPosition.target.latitude + ", " +
+                    "대상 지점 경도: " + cameraPosition.target.longitude )
+
+//            naverMap.onMapClickListener = OnMapClickListener { point: PointF?, coord: LatLng ->
+//                showCustomToast("대상 지점 위도: " + cameraPosition.target.latitude + ", " +
+//                        "대상 지점 경도: " + cameraPosition.target.longitude + ", " +
+//                        "줌 레벨: " + cameraPosition.zoom + ", " +
+//                        "기울임 각도: " + cameraPosition.tilt + ", " +
+//                        "베어링 각도: " + cameraPosition.bearing
+//                )
+//            }
+        }
+
+//        var cameraPosition = naverMap.cameraPosition
+
     }
 
     //위치정보 권한 설정
@@ -59,9 +81,18 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
 
         val uiSettings = naverMap.uiSettings
         uiSettings.isCompassEnabled = false // 나침반
-        uiSettings.isScaleBarEnabled = true // 거리
-        uiSettings.isZoomControlEnabled = false // 줌
-        uiSettings.isLocationButtonEnabled = true // 내가 있는곳
+        uiSettings.isScaleBarEnabled = false // 거리
+        uiSettings.isZoomControlEnabled = true // 줌
+        uiSettings.isLocationButtonEnabled = false // 내가 있는곳
+
+        var cameraPosition = naverMap.cameraPosition
+        showCustomToast("대상 지점 위도: " + cameraPosition.target.latitude + ", " +
+                "대상 지점 경도: " + cameraPosition.target.longitude + ", " +
+                "줌 레벨: " + cameraPosition.zoom + ", " +
+                "기울임 각도: " + cameraPosition.tilt + ", " +
+                "베어링 각도: " + cameraPosition.bearing
+        )
+
 
     }
 

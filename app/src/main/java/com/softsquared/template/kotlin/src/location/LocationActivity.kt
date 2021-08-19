@@ -13,7 +13,8 @@ class LocationActivity : BaseActivity<ActivityLocationBinding>(ActivityLocationB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.locChangeBtn.setOnClickListener {
+
+        binding.mapChangeBtn.setOnClickListener {
             var intent = Intent(this, MapActivity::class.java)
             startActivity(intent)
         }
