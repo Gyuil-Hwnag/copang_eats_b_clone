@@ -1,6 +1,6 @@
-package com.example.week5_1
+package com.softsquared.template.kotlin.src.logout.model
 
-import com.softsquared.template.kotlin.src.logout.model.RetrofitClient
+import com.example.week5_1.RetrofitClient
 
 class RetrofitClient {
 

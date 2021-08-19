@@ -42,9 +42,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
 
         // 광고베너
         val sliderItems: MutableList<String> = ArrayList()
-        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_002427222_01.jpg")
-        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_002427222_02.jpg")
-        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_002427222.jpg")
+        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_015620748.jpg")
+        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_015620748.jpg")
+        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_134250409.jpg")
         binding.vpImageSlider.setAdapter(SliderAdapter(context!!, binding.vpImageSlider, sliderItems))
         binding.vpImageSlider.setClipToPadding(false)
         binding.vpImageSlider.setClipChildren(false)

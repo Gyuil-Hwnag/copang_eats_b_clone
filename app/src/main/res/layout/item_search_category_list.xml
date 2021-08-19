@@ -5,15 +5,15 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
-    android:paddingLeft="11dp"
-    android:paddingRight="11dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:paddingTop="10dp"
     android:paddingBottom="5dp">
 
     <ImageView
         android:id="@+id/img_categery"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
+        android:layout_width="165dp"
+        android:layout_height="125dp"
         android:src="@drawable/img_category1"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"

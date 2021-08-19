@@ -13,9 +13,16 @@
     <color name="redForText">#d9534f</color>
 
     <color name="blue">#2196F3</color>
-    <color name="dark_blue">#0A6AB6</color>
+    <color name="dark_blue">#0275E9</color>
     <color name="gray">#F1F1F1</color>
     <color name="edit_gray">#DDDDDD</color>
+
+
     <color name="register_btn_gray">#BCBABA</color>
+    <color name="register_edit_gray">#DDDCDD</color>
+    <color name="register_login_blue">#0AAFFE</color>
+
+    <color name="register_img_gray">#ECECEC</color>
+    <color name="register_edit2_gray">#E2E1E2</color>
 
 </resources>

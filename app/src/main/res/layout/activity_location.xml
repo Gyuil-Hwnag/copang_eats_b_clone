@@ -52,8 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:hint="도로명, 건물명 또는 지번으로 검색"
-            android:drawableLeft="@drawable/drawable_left_search">
+            android:hint="도로명, 건물명 또는 지번으로 검색">
         </EditText>
     </LinearLayout>
 
