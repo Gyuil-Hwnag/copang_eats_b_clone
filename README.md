@@ -19,4 +19,4 @@ Kotlin ver# coupang_eats_test_Android_Duru
 8. 2021.08.21
   map 레이아웃 수정 및 동작, 메인화면 광고 api 수정, 쿠폰 api 구현
 9. 2021.08.22
-  메인 레이아웃 수정
+  메인 레이아웃 수정, 어플 툴바수정
