@@ -1,28 +1,27 @@
-package com.softsquared.template.kotlin.src.main
+package com.softsquared.template.kotlin.src.coupon
 
-import android.content.Intent
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.gson.annotations.SerializedName
 import com.softsquared.template.kotlin.R
-import com.softsquared.template.kotlin.src.main.model.Category
-import com.softsquared.template.kotlin.src.main.model.Coupon
-import com.softsquared.template.kotlin.src.searchDetail.SearchDetailActivity
+import com.softsquared.template.kotlin.src.coupon.model.coupon
 
-class CouponAdapter(private val itemList : ArrayList<Coupon>) :
+class CouponAdapter(private val itemList : ArrayList<coupon>) :
     RecyclerView.Adapter<CouponAdapter.ViewHolder>(){
-    var datas = ArrayList<Category>()
+    var datas = ArrayList<coupon>()
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView){
-        var coupon_img: ImageView = itemView.findViewById(R.id.img_coupon)
-        var coupon_name: TextView = itemView.findViewById(R.id.txt_coupon)
+        var storeImageUrl: ImageView = itemView.findViewById(R.id.img_coupon)
+        var storeName: TextView = itemView.findViewById(R.id.txt_coupon)
 //        var coupon_logo: TextView = itemView.findViewById(R.id.txt_category)
-        var coupon_price: TextView = itemView.findViewById(R.id.txt_coupon_price)
+        var salePrice: TextView = itemView.findViewById(R.id.txt_coupon_price)
 
     }
 
@@ -32,9 +31,13 @@ class CouponAdapter(private val itemList : ArrayList<Coupon>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.coupon_img.setImageResource(itemList.get(position).coupon_Img)
-        holder.coupon_name.setText(itemList.get(position).coupon_name)
-        holder.coupon_price.setText(itemList.get(position).coupon_price)
+
+        Glide.with(holder.itemView.getContext())
+            .load(itemList.get(position).storeImageUrl)
+            .into(holder.storeImageUrl)
+
+        holder.storeName.setText(itemList.get(position).storeName)
+        holder.salePrice.setText(itemList.get(position).salePrice.toString()+"원 할인")
 
 
 //        holder.itemView.setOnClickListener {

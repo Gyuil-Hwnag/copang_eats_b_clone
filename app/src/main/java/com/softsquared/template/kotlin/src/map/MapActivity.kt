@@ -13,6 +13,7 @@ import com.naver.maps.map.util.FusedLocationSource
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMapBinding
 import com.softsquared.template.kotlin.src.location.LocationActivity
+import com.softsquared.template.kotlin.src.location_detail.LocationDetailActivity
 
 
 class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate), OnMapReadyCallback {
@@ -40,20 +41,11 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
             showCustomToast("대상 지점 위도: " + cameraPosition.target.latitude + ", " +
                     "대상 지점 경도: " + cameraPosition.target.longitude + ", "
             )
-            Log.d("position!!","대상 지점 위도: " + cameraPosition.target.latitude + ", " +
-                    "대상 지점 경도: " + cameraPosition.target.longitude )
-
-//            naverMap.onMapClickListener = OnMapClickListener { point: PointF?, coord: LatLng ->
-//                showCustomToast("대상 지점 위도: " + cameraPosition.target.latitude + ", " +
-//                        "대상 지점 경도: " + cameraPosition.target.longitude + ", " +
-//                        "줌 레벨: " + cameraPosition.zoom + ", " +
-//                        "기울임 각도: " + cameraPosition.tilt + ", " +
-//                        "베어링 각도: " + cameraPosition.bearing
-//                )
-//            }
+            var intent = Intent(this, LocationDetailActivity::class.java)
+            startActivity(intent)
+//            Log.d("position!!","대상 지점 위도: " + cameraPosition.target.latitude + ", " +
+//                    "대상 지점 경도: " + cameraPosition.target.longitude )
         }
-
-//        var cameraPosition = naverMap.cameraPosition
 
     }
 

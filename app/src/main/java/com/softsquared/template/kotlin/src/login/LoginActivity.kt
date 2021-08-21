@@ -38,10 +38,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
         var editor = text.edit()
         editor.putString("X-ACCESS-TOKEN", response.result.jwt)
-        editor.putInt("userIdx", response.result.userId)
+        editor.putInt("userId", response.result.userId)
         editor.commit()
 
-//        showCustomToast("jwt : "+response.result.jwt+ " "+ "userIdx : "+response.result.userId.toString())
+        Log.d("success111","userId : "+response.result.userId.toString())
 
         var intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

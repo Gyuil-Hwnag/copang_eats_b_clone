@@ -1,18 +1,13 @@
 package com.softsquared.template.kotlin.src.main
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.softsquared.template.kotlin.R
-import com.softsquared.template.kotlin.src.main.model.Category
-import com.softsquared.template.kotlin.src.main.model.Coupon
 import com.softsquared.template.kotlin.src.main.model.best
-import com.softsquared.template.kotlin.src.searchDetail.SearchDetailActivity
 
 class BestAdapter(private val itemList : ArrayList<best>) :
     RecyclerView.Adapter<BestAdapter.ViewHolder>(){

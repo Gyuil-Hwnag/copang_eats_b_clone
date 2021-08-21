@@ -8,5 +8,5 @@ import retrofit2.http.Path
 
 interface logoutAPI {
     @POST("/app/{userId}/logout")
-    fun postLogout(@Path("userId") params: PostLogoutRequest): Call<LogoutResponse>
+    fun postLogout(@Path("userId") userId: Int): Call<LogoutResponse>
 }

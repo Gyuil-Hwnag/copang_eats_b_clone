@@ -1,15 +1,14 @@
-package com.softsquared.template.kotlin.src.main
+package com.softsquared.template.kotlin.src.event
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
 import com.softsquared.template.kotlin.databinding.SlideItemBinding
+import com.softsquared.template.kotlin.src.event.model.event
 
 
 class SliderAdapter(context: Context, viewPager2: ViewPager2, sliderImage: MutableList<String>) :

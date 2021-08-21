@@ -1,8 +1,10 @@
 package com.softsquared.template.kotlin.src.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +14,23 @@ import androidx.viewpager2.widget.ViewPager2
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseFragment
 import com.softsquared.template.kotlin.databinding.FragmentMainBinding
+import com.softsquared.template.kotlin.src.coupon.CouponAdapter
+import com.softsquared.template.kotlin.src.coupon.CouponService
+import com.softsquared.template.kotlin.src.coupon.CouponView
+import com.softsquared.template.kotlin.src.coupon.model.CouponResponse
+import com.softsquared.template.kotlin.src.event.EventService
+import com.softsquared.template.kotlin.src.event.EventView
+import com.softsquared.template.kotlin.src.event.SliderAdapter
+import com.softsquared.template.kotlin.src.event.model.EventResponse
 import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.main.model.Category
-import com.softsquared.template.kotlin.src.main.model.Coupon
+import com.softsquared.template.kotlin.src.coupon.model.coupon
 import com.softsquared.template.kotlin.src.main.model.best
 import com.softsquared.template.kotlin.src.main.model.new_delivery
 
-class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind, R.layout.fragment_main){
+
+class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind, R.layout.fragment_main),
+    EventView, CouponView {
 
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var mRecyclerView: RecyclerView
@@ -28,7 +40,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     lateinit var bestAdapter: BestAdapter
     lateinit var bestRecyclerView: RecyclerView
 
-    var couponList = ArrayList<Coupon>()
+    var couponList = ArrayList<coupon>()
     lateinit var couponAdapter: CouponAdapter
     lateinit var couponRecyclerView: RecyclerView
 
@@ -36,35 +48,29 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     lateinit var newDeliveryAdapter: NewDeliveryAdapter
     lateinit var newDeliveryRecyclerView: RecyclerView
 
+    var sliderItems: MutableList<String> = ArrayList()
+
     private val sliderHandler: Handler = Handler()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 광고베너
-        val sliderItems: MutableList<String> = ArrayList()
-        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_015620748.jpg")
-        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_015620748.jpg")
-        sliderItems.add("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/KakaoTalk_20210818_134250409.jpg")
-        binding.vpImageSlider.setAdapter(SliderAdapter(context!!, binding.vpImageSlider, sliderItems))
-        binding.vpImageSlider.setClipToPadding(false)
-        binding.vpImageSlider.setClipChildren(false)
-        binding.vpImageSlider.setOffscreenPageLimit(3)
-        binding.vpImageSlider.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER)
-        val compositePageTransformer = CompositePageTransformer()
-        compositePageTransformer.addTransformer(MarginPageTransformer(40))
-        compositePageTransformer.addTransformer { page, position ->
-            val r = 1 - Math.abs(position)
-//            page.scaleY = 0.85f + r * 0.15f
-        }
-        binding.vpImageSlider.setPageTransformer(compositePageTransformer)
-        binding.vpImageSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                sliderHandler.removeCallbacks(sliderRunnable)
-                sliderHandler.postDelayed(sliderRunnable, 2000)
-            }
-        })
+        val text = activity!!.getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", Context.MODE_PRIVATE)
+        var userId = text.getInt("userId", 0)
+        var jwt = text.getString("X-ACCESS-TOKEN", null)
+//        var text = sharedElementReturnTransition
+//        var userId = text.
 
+        Log.d("Result!!", userId.toString()+" "+jwt)
+//        showCustomToast(userId.toString())
+
+        if(userId != 0){
+//            showLoadingDialog(context!!)
+            Log.d("userId", userId.toString())
+            Log.d("X-ACCESS-TOKEN", jwt.toString())
+            EventService(this).tryPostEvent(userId)
+            CouponService(this).tryGetCoupon(userId)
+        }
 
         // revcycler view category
         categoryList.add(Category(R.drawable.img_category1, "신규 맛집"))
@@ -110,7 +116,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             false)
 
         // revcycler view coupon
-        couponList.add(Coupon(R.drawable.img_category1, "신규 맛집", "4,000원 할인", R.drawable.img_category1))
+//        couponList.add(coupon(R.drawable.img_category1, "신규 맛집", "4,000원 할인", R.drawable.img_category1))
 
         couponAdapter = CouponAdapter(couponList)
         couponRecyclerView = binding.recyclerItemCoupon
@@ -150,5 +156,67 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     override fun onResume() {
         super.onResume()
         sliderHandler.postDelayed(sliderRunnable, 2000)
+    }
+
+    override fun onPostEventSuccess(response: EventResponse) {
+        // 광고베너
+
+//        var sliderItemArray: JSONObject
+//        sliderItems: MutableList<String> = ArrayList()
+
+        for(i in 0..response.result.size-1){
+            Log.d("slider", "")
+            sliderItems.add(response.result.get(i).eventImageUrl)
+        }
+//        showCustomToast("성공")
+//        Log.d("success123", "success")
+
+        binding.vpImageSlider.setAdapter(SliderAdapter(context!!, binding.vpImageSlider, sliderItems))
+        binding.vpImageSlider.setClipToPadding(false)
+        binding.vpImageSlider.setClipChildren(false)
+        binding.vpImageSlider.setOffscreenPageLimit(3)
+        binding.vpImageSlider.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER)
+        val compositePageTransformer = CompositePageTransformer()
+        compositePageTransformer.addTransformer(MarginPageTransformer(40))
+        compositePageTransformer.addTransformer { page, position ->
+            val r = 1 - Math.abs(position)
+//            page.scaleY = 0.85f + r * 0.15f
+        }
+        binding.vpImageSlider.setPageTransformer(compositePageTransformer)
+        binding.vpImageSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                sliderHandler.removeCallbacks(sliderRunnable)
+                sliderHandler.postDelayed(sliderRunnable, 2000)
+            }
+        })
+    }
+
+    override fun onPostEventFailure(message: String) {
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "fail")
+    }
+
+    override fun onGetCouponSuccess(response: CouponResponse) {
+        for(i in 0..response.result.size-1){
+            Log.d("slider", "")
+            var coupon_Img = response.result.get(i).storeImageUrl
+            var coupon_name = response.result.get(i).storeName
+            var coupon_price = response.result.get(i).salePrice
+            var coupon: coupon = coupon(coupon_name,coupon_Img, coupon_price)
+            couponList.add(coupon)
+        }
+        showCustomToast("성공")
+        Log.d("success123", "success")
+
+        couponAdapter = CouponAdapter(couponList)
+        couponRecyclerView = binding.recyclerItemCoupon
+        couponRecyclerView.adapter = couponAdapter
+        couponRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            false)
+    }
+
+    override fun onGetCouponFailure(message: String) {
+        TODO("Not yet implemented")
     }
 }

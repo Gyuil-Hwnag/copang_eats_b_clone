@@ -31,9 +31,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
             var editor = text.edit()
 
             showLoadingDialog(this)
-            var userId = text.getInt("userId", -1)
-            val postRequest = PostLogoutRequest(userId)
-            LogoutService(this).tryPostLogout(postRequest)
+            var userId = text.getInt("userId", 0)
+            Log.d("userId", userId.toString())
+            LogoutService(this).tryPostLogout(userId)
         }
     }
 
@@ -45,18 +45,18 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
         var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
         var editor = text.edit()
         editor.putString("X-ACCESS-TOKEN", null)
-        editor.putInt("userIdx", -1)
+        editor.putInt("userId", 0)
         editor.commit()
         var intent = Intent(this, SplashActivity::class.java)
         startActivity(intent)
-        Log.d("success111", "success")
+        Log.d("success!!!", "success")
     }
 
     override fun onPostLogoutFailure(message: String) {
         dismissLoadingDialog()
         showCustomToast("오류 : $message")
         Log.d("fail123", "fail")
-        var intent = Intent(this, SplashActivity::class.java)
-        startActivity(intent)
+//        var intent = Intent(this, SplashActivity::class.java)
+//        startActivity(intent)
     }
 }

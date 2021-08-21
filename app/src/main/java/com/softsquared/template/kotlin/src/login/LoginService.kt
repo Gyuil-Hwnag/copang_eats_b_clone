@@ -17,13 +17,6 @@ class LoginService(val view: LoginView) {
             Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 view.onPostLoginSuccess(response.body() as LoginResponse)
-//                var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP",
-//                    AppCompatActivity.MODE_PRIVATE
-//                )
-//                var editor = text.edit()
-//                editor.putString("X-ACCESS-TOKEN", response.body()!!.jwt)
-//                editor.putInt("userIdx", response.body()!!.userIdx)
-//                showCustomToast("jwt : "+response.jwt+ " "+ "userIdx : "+response.userIdx.toString())
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
