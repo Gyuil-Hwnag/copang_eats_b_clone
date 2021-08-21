@@ -18,3 +18,5 @@ Kotlin ver# coupang_eats_test_Android_Duru
   map 레이아웃 수정 및 지도에서 마커 위치에 따른 위도,경도 값 저장, 메인화면 광고 api 구현
 8. 2021.08.21
   map 레이아웃 수정 및 동작, 메인화면 광고 api 수정, 쿠폰 api 구현
+9. 2021.08.22
+  메인 레이아웃 수정
