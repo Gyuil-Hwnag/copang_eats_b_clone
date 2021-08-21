@@ -1,37 +1,34 @@
-package com.softsquared.template.kotlin.src.main
+package com.softsquared.template.kotlin.src.best
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.softsquared.template.kotlin.R
-import com.softsquared.template.kotlin.src.main.model.Category
-import com.softsquared.template.kotlin.src.main.model.new_delivery
-import com.softsquared.template.kotlin.src.searchDetail.SearchDetailActivity
+import com.softsquared.template.kotlin.src.best.model.best
 
-class NewDeliveryAdapter(private val itemList : ArrayList<new_delivery>) :
-    RecyclerView.Adapter<NewDeliveryAdapter.ViewHolder>(){
-    var datas = ArrayList<new_delivery>()
+class BestAdapter(private val itemList : ArrayList<best>) :
+    RecyclerView.Adapter<BestAdapter.ViewHolder>(){
+    var datas = ArrayList<best>()
 
     class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView){
         var storeImageUrl: ImageView = itemView.findViewById(R.id.img_new)
         var storeName: TextView = itemView.findViewById(R.id.txt_name)
-        //        var cheetahDelivery: TextView = itemView.findViewById(R.id.txt_best)
+//        var cheetahDelivery: TextView = itemView.findViewById(R.id.txt_best)
         var averageStarRating: TextView = itemView.findViewById(R.id.txt_review_num)
         var reviewCount: TextView = itemView.findViewById(R.id.txt_review_count)
         var distance: TextView = itemView.findViewById(R.id.txt_distance)
         var deliveryTip: TextView = itemView.findViewById(R.id.txt_delivery_status)
 //        var storeStatus: TextView = itemView.findViewById(R.id.txt_best)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_new_delivery_list, parent, false)
+        val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_best_list, parent, false)
         return ViewHolder(view)
     }
 
@@ -48,7 +45,7 @@ class NewDeliveryAdapter(private val itemList : ArrayList<new_delivery>) :
 
 //        holder.itemView.setOnClickListener {
 //            var intent = Intent(holder.itemView?.context, SearchDetailActivity::class.java)
-//            val name = itemList.get(position).category_name
+//            val name = itemList.get(position).coupon_name
 //            intent.putExtra("category_name", name)
 //            ContextCompat.startActivity(holder.itemView.context, intent, null)
 //        }

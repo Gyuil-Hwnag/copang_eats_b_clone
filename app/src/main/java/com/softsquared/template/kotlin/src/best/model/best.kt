@@ -1,8 +1,8 @@
-package com.softsquared.template.kotlin.src.main.model
+package com.softsquared.template.kotlin.src.best.model
 
 import com.google.gson.annotations.SerializedName
 
-data class new_delivery(
+data class best(
     @SerializedName("storeImageUrl") val storeImageUrl: String,
     @SerializedName("storeName") val storeName: String,
     @SerializedName("cheetahDelivery") val cheetahDelivery: Int,
@@ -11,5 +11,5 @@ data class new_delivery(
     @SerializedName("distance") val distance: Float,
     @SerializedName("deliveryTip") val deliveryTip: Int,
     @SerializedName("storeStatus") val storeStatus: String
-// @SerializedName("coupon_logo") val coupon_logo: String
+    // @SerializedName("coupon_logo") val coupon_logo: String
 )

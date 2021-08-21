@@ -6,6 +6,7 @@ import android.view.View
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseFragment
 import com.softsquared.template.kotlin.databinding.FragmentMyPageBinding
+import com.softsquared.template.kotlin.src.mycoupon.MyCouponActivity
 
 class MyPageFragment :
     BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding::bind, R.layout.fragment_my_page) {
@@ -16,6 +17,12 @@ class MyPageFragment :
         // setting layout
         binding.layout9.setOnClickListener {
             var intent = Intent(context, SettingActivity::class.java)
+            startActivity(intent)
+        }
+
+        // my_coupon
+        binding.layout3.setOnClickListener {
+            var intent = Intent(context, MyCouponActivity::class.java)
             startActivity(intent)
         }
     }

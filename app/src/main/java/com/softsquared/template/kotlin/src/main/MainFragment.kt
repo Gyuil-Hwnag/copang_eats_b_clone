@@ -11,9 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.gson.annotations.SerializedName
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseFragment
 import com.softsquared.template.kotlin.databinding.FragmentMainBinding
+import com.softsquared.template.kotlin.src.best.BestAdapter
+import com.softsquared.template.kotlin.src.best.BestView
+import com.softsquared.template.kotlin.src.best.model.BestResponse
 import com.softsquared.template.kotlin.src.coupon.CouponAdapter
 import com.softsquared.template.kotlin.src.coupon.CouponService
 import com.softsquared.template.kotlin.src.coupon.CouponView
@@ -25,12 +29,12 @@ import com.softsquared.template.kotlin.src.event.model.EventResponse
 import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.main.model.Category
 import com.softsquared.template.kotlin.src.coupon.model.coupon
-import com.softsquared.template.kotlin.src.main.model.best
+import com.softsquared.template.kotlin.src.best.model.best
 import com.softsquared.template.kotlin.src.main.model.new_delivery
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind, R.layout.fragment_main),
-    EventView, CouponView {
+    EventView, CouponView, BestView {
 
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var mRecyclerView: RecyclerView
@@ -104,10 +108,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         mRecyclerView.adapter = categoryAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
             false)
-//        mRecyclerView.addItemDecoration(VerticalItemDecorator(20))
 
-        // revcycler view best
-        bestList.add(best(R.drawable.img_category1, "버거킹 약수역점", "0.3Km", "무료배달"))
+        // revcycler view 인기 프랜차이즈
+        for(i in 0..3){
+            var item = best("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/%EC%A7%9C%EC%9E%A5%EB%A9%B4.png",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            var item2 = best("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EA%B3%A0%EA%B8%B0+%EC%84%B8%ED%8A%B8.jpg",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            var item3 = best("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EB%83%89%EB%A9%B4+%EC%84%B8%ED%8A%B8.png",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            bestList.add(item)
+            bestList.add(item2)
+            bestList.add(item3)
+        }
 
         bestAdapter = BestAdapter(bestList)
         bestRecyclerView = binding.recyclerItemBest
@@ -125,8 +138,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             false)
 
         // revcycler view new_delivery
-        newDeliveryList.add(new_delivery(R.drawable.img_category1, "신규 맛집", "0.3Km", "무료배달"))
-
+        for(i in 0..3){
+            var item = new_delivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/%EC%A7%9C%EC%9E%A5%EB%A9%B4.png",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            var item2 = new_delivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EA%B3%A0%EA%B8%B0+%EC%84%B8%ED%8A%B8.jpg",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            var item3 = new_delivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EB%83%89%EB%A9%B4+%EC%84%B8%ED%8A%B8.png",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            newDeliveryList.add(item)
+            newDeliveryList.add(item2)
+            newDeliveryList.add(item3)
+        }
         newDeliveryAdapter = NewDeliveryAdapter(newDeliveryList)
         newDeliveryRecyclerView = binding.recyclerItemNew
         newDeliveryRecyclerView.adapter = newDeliveryAdapter
@@ -217,6 +239,30 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     }
 
     override fun onGetCouponFailure(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onGetBestSuccess(response: BestResponse) {
+//        for(i in 0..response.result.size-1){
+//            Log.d("slider", "")
+//           var best = response.result.get(2)
+//            var coupon_Img = response.result.get(i).storeImageUrl
+//            var coupon_name = response.result.get(i).storeName
+//            var coupon_price = response.result.get(i).salePrice
+//            var coupon: coupon = coupon(coupon_name,coupon_Img, coupon_price)
+//            couponList.add(coupon)
+//        }
+//        showCustomToast("성공")
+//        Log.d("success123", "success")
+//
+//        couponAdapter = CouponAdapter(couponList)
+//        couponRecyclerView = binding.recyclerItemCoupon
+//        couponRecyclerView.adapter = couponAdapter
+//        couponRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+//            false)
+    }
+
+    override fun onGetBestFailure(message: String) {
         TODO("Not yet implemented")
     }
 }
