@@ -9,15 +9,17 @@
     <com.naver.maps.map.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="170dp">
+        android:layout_height="wrap_content"
+        android:paddingBottom="70dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edit_main">
     </com.naver.maps.map.MapView>
 
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_map_mark_adobespark2"
-        app:layout_constraintTop_toTopOf="@id/map_view"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/edit_main"
         app:layout_constraintLeft_toLeftOf="@id/map_view"
         app:layout_constraintRight_toRightOf="@id/map_view">
@@ -49,7 +51,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/edit_main"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         android:paddingTop="15dp"
         android:paddingLeft="15dp"

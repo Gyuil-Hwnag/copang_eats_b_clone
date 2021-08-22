@@ -20,6 +20,10 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>(Activ
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        var loc = intent.getStringExtra("location")
+        binding.txtLocMain.setText(loc)
+        binding.txtSubMain.setText(loc)
+
         binding.registerBtn.setOnClickListener {
             var intent = Intent(this, LocationActivity::class.java)
             startActivity(intent)

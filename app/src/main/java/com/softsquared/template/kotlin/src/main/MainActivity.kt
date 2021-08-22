@@ -12,6 +12,7 @@ import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMainBinding
 import com.softsquared.template.kotlin.src.event.EventView
+import com.softsquared.template.kotlin.src.like.LikeActivity
 import com.softsquared.template.kotlin.src.login.LoginActivity
 import com.softsquared.template.kotlin.src.mypage.MyPageFragment
 import com.softsquared.template.kotlin.src.register.RegisterActivity
@@ -48,10 +49,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.menu_main_btm_nav_mark -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_frm, MyPageFragment())
-                            .commitAllowingStateLoss()
-                        return@OnNavigationItemSelectedListener true
+                        var intent = Intent(this, LikeActivity::class.java)
+                        startActivity(intent)
                     }
                     R.id.menu_main_btm_nav_shop -> {
                         if(login_status_jwt == null){

@@ -30,6 +30,7 @@ import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.main.model.Category
 import com.softsquared.template.kotlin.src.coupon.model.coupon
 import com.softsquared.template.kotlin.src.best.model.best
+import com.softsquared.template.kotlin.src.main.model.MainDelivery
 import com.softsquared.template.kotlin.src.main.model.new_delivery
 
 
@@ -51,6 +52,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     var newDeliveryList = ArrayList<new_delivery>()
     lateinit var newDeliveryAdapter: NewDeliveryAdapter
     lateinit var newDeliveryRecyclerView: RecyclerView
+
+    var MainDeliveryList = ArrayList<MainDelivery>()
+    lateinit var MainDeliveryAdapter: MainDeliveryAdapter
+    lateinit var MainDeliveryRecyclerView: RecyclerView
 
     var sliderItems: MutableList<String> = ArrayList()
 
@@ -165,6 +170,26 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         newDeliveryRecyclerView.adapter = newDeliveryAdapter
         newDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
             false)
+
+        // Main Delivery
+        // revcycler view new_delivery
+        for(i in 0..3){
+            var item = MainDelivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/%EC%A7%9C%EC%9E%A5%EB%A9%B4.png",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            var item2 = MainDelivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EA%B3%A0%EA%B8%B0+%EC%84%B8%ED%8A%B8.jpg",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            var item3 = MainDelivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EB%83%89%EB%A9%B4+%EC%84%B8%ED%8A%B8.png",
+                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
+            MainDeliveryList.add(item)
+            MainDeliveryList.add(item2)
+            MainDeliveryList.add(item3)
+        }
+        MainDeliveryAdapter = MainDeliveryAdapter(MainDeliveryList)
+        MainDeliveryRecyclerView = binding.recyclerItemMain
+        MainDeliveryRecyclerView.adapter = MainDeliveryAdapter
+        MainDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,
+            false)
+
 
 
     }

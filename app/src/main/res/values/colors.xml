@@ -27,4 +27,6 @@
 
     <color name="map_edit_gray">#BCBBBB</color>
 
+    <color name="like_background">#F4F5F7</color>
+
 </resources>

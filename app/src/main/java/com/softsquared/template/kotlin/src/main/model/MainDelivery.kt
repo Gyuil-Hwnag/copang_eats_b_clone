@@ -1,10 +1,15 @@
 package com.softsquared.template.kotlin.src.main.model
 
+import com.google.gson.annotations.SerializedName
+
 data class MainDelivery(
-    var delivery_Img: Int,
-    var delivery_name: String,
-    var delivery_time : String,
-    var delivery_distance: String,
-    var delivery_status: String,
-    var delivery_price: String,
-    var grade: Float)
+    @SerializedName("storeImageUrl") val storeImageUrl: String,
+    @SerializedName("storeName") val storeName: String,
+    @SerializedName("cheetahDelivery") val cheetahDelivery: Int,
+    @SerializedName("averageStarRating") val averageStarRating: Float,
+    @SerializedName("reviewCount") val reviewCount: Int,
+    @SerializedName("distance") val distance: Float,
+    @SerializedName("deliveryTip") val deliveryTip: Int,
+    @SerializedName("storeStatus") val storeStatus: String
+    // @SerializedName("coupon_logo") val coupon_logo: String
+    )

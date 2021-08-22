@@ -108,7 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@id/line"
                 android:text="인기 프렌차이즈"
                 android:layout_marginTop="5dp"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 android:textStyle="bold"
                 android:padding="15dp"
                 android:textColor="@color/black">
@@ -188,7 +188,7 @@
                 android:text="새로 들어왔어요!"
                 android:textStyle="bold"
                 android:layout_marginTop="5dp"
-                android:textSize="15dp"
+                android:textSize="17dp"
                 android:padding="15dp"
                 android:textColor="@color/black">
             </TextView>
@@ -216,12 +216,20 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/line4"
                 android:text="골라먹는 맛집"
-                android:layout_marginTop="10dp"
-                android:textSize="15dp"
-                android:padding="15dp"
+                android:layout_marginTop="5dp"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="5dp"
                 android:textColor="@color/black">
             </TextView>
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="70dp"
                 android:id="@+id/recycler_item_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
