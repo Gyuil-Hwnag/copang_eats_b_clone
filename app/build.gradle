@@ -81,4 +81,7 @@ dependencies {
 
     // tablayout
     implementation 'com.google.android.material:material:1.2.1'
+
+    // bottom sheet fragment
+    implementation "com.google.android.material:material:1.2.0-alpha01"
 }

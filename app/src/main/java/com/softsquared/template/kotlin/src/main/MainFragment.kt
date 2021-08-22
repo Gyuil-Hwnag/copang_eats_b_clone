@@ -76,6 +76,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             CouponService(this).tryGetCoupon(userId)
         }
 
+        binding.locMain.setOnClickListener {
+            if(jwt == null){
+                val bottomSheet = BottomSheet()
+                bottomSheet.show(getFragmentManager()!!, bottomSheet.tag)
+            }
+            else{
+                var intent = Intent(context, LocationActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
         // revcycler view category
         categoryList.add(Category(R.drawable.img_category1, "신규 맛집"))
         categoryList.add(Category(R.drawable.img_category2, "1인분"))
@@ -155,11 +166,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         newDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
             false)
 
-
-        binding.locMain.setOnClickListener {
-            var intent = Intent(context, LocationActivity::class.java)
-            startActivity(intent)
-        }
 
     }
 

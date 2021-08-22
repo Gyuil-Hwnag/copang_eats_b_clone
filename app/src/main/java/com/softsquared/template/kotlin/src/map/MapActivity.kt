@@ -6,6 +6,8 @@ import android.graphics.PointF
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.NaverMap.OnMapClickListener
@@ -20,6 +22,8 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
     lateinit private var mapView: MapView
     lateinit private var locationSource: FusedLocationSource
     lateinit private var naverMap: NaverMap
+
+    var latLng: LatLng = LatLng(25.1933895, 66.5949836)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,8 +88,6 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
                 "기울임 각도: " + cameraPosition.tilt + ", " +
                 "베어링 각도: " + cameraPosition.bearing
         )
-
-
     }
 
     companion object {

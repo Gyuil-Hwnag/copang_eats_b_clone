@@ -54,15 +54,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.menu_main_btm_nav_shop -> {
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.main_frm, MainFragment())
-                            .commitAllowingStateLoss()
-                        return@OnNavigationItemSelectedListener true
+                        if(login_status_jwt == null){
+                            val bottomSheet = BottomSheet()
+                            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                        }
+                        else{
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.main_frm, MainFragment())
+                                .commitAllowingStateLoss()
+                            return@OnNavigationItemSelectedListener true
+                        }
                     }
                     R.id.menu_main_btm_nav_my_page -> {
                         if(login_status_jwt == null){
-                            var intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
+                            val bottomSheet = BottomSheet()
+                            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
                         }
                         else{
                             supportFragmentManager.beginTransaction()
