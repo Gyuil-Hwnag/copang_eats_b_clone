@@ -22,8 +22,9 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>(Activ
         super.onCreate(savedInstanceState)
 
         var loc = intent.getStringExtra("location")
-        var latitude = intent.getFloatExtra("latitude", 0F)
-        var longitude = intent.getFloatExtra("longitude",0F)
+        var latitude = intent.getStringExtra("latitude")
+        var longitude = intent.getStringExtra("longitude")
+        showCustomToast("latitude : "+latitude+" longitude : "+longitude)
         binding.txtLocMain.setText(loc)
         binding.txtSubMain.setText(loc)
         var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
@@ -38,8 +39,8 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>(Activ
                 val address = binding.txtLocMain.text.toString()
                 val detailAddress = binding.detail.text.toString()
                 val infoAddress = binding.subDetail.text.toString()
-                val latitudeLoc = latitude
-                val longitudeLoc = longitude
+                val latitudeLoc = latitude!!.toFloat()
+                val longitudeLoc = longitude!!.toFloat()
                 val category = 0
 
                 val postRequest = PostLocationDetailRequest(address = address, detailAddress = detailAddress, infoAddress = infoAddress,
@@ -58,11 +59,6 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>(Activ
     override fun onPostLocationDetailSuccess(response: LocationDetailResponse) {
         dismissLoadingDialog()
         response.message?.let { showCustomToast(it) }
-
-        // shared preference
-        var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
-        var editor = text.edit()
-        editor.commit()
 
         var intent = Intent(this, LocationAddActivity::class.java)
         startActivity(intent)

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import com.naver.maps.geometry.LatLng
@@ -55,11 +56,11 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
             var cameraPosition = naverMap.cameraPosition
             var intent = Intent(this, LocationDetailActivity::class.java)
             intent.putExtra("location", binding.locMainTxt.text)
-            intent.putExtra("latitude", naverMap.cameraPosition.target.latitude)
-            intent.putExtra("longitude", naverMap.cameraPosition.target.longitude)
+            intent.putExtra("latitude", cameraPosition.target.latitude.toString())
+            intent.putExtra("longitude", cameraPosition.target.longitude.toString())
+            Log.d("position!!","대상 지점 위도: " + cameraPosition.target.latitude + ", " +
+                    "대상 지점 경도: " + cameraPosition.target.longitude )
             startActivity(intent)
-//            Log.d("position!!","대상 지점 위도: " + cameraPosition.target.latitude + ", " +
-//                    "대상 지점 경도: " + cameraPosition.target.longitude )
         }
 
     }

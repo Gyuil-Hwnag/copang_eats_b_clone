@@ -1,5 +1,6 @@
 package com.softsquared.template.kotlin.src.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
@@ -7,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseFragment
 import com.softsquared.template.kotlin.databinding.FragmentSearchBinding
+import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.main.CategoryAdapter
 import com.softsquared.template.kotlin.src.main.model.Category
+import com.softsquared.template.kotlin.src.search_detail.SearchDetailActivity
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::bind, R.layout.fragment_search){
 
@@ -52,5 +55,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         val gridLayoutManager = GridLayoutManager(context, 2)
         mRecyclerView.setLayoutManager(gridLayoutManager)
 //        mRecyclerView.addItemDecoration(VerticalItemDecorator(20))
+
+        binding.searchTxt.setOnClickListener {
+            var intent = Intent(context, SearchDetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

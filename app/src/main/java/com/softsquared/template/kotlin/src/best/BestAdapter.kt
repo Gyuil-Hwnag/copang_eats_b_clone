@@ -38,7 +38,7 @@ class BestAdapter(private val itemList : ArrayList<best>) :
             .into(holder.storeImageUrl)
         holder.storeName.setText(itemList.get(position).storeName)
         holder.averageStarRating.setText(itemList.get(position).averageStarRating.toString())
-        holder.reviewCount.setText(itemList.get(position).reviewCount.toString())
+        holder.reviewCount.setText("("+itemList.get(position).reviewCount.toString()+")")
         holder.distance.setText(itemList.get(position).distance)
         holder.deliveryTip.setText("배달비 "+itemList.get(position).deliveryTip)
 

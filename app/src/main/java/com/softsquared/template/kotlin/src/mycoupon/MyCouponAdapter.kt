@@ -1,19 +1,12 @@
 package com.softsquared.template.kotlin.src.mycoupon
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.annotations.SerializedName
 import com.softsquared.template.kotlin.R
-import com.softsquared.template.kotlin.src.main.model.Category
 import com.softsquared.template.kotlin.src.mycoupon.model.my_coupon
-import com.softsquared.template.kotlin.src.searchDetail.SearchDetailActivity
-import java.util.*
 import kotlin.collections.ArrayList
 
 class MyCouponAdapter(private val itemList : ArrayList<my_coupon>) :

@@ -33,6 +33,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".src.search_detail.SearchDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".src.like.LikeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -78,7 +83,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".src.searchDetail.SearchDetailActivity"
+            android:name=".src.searchDetail.SearchCateogryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

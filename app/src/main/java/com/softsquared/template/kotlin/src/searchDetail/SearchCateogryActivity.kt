@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMainBinding
-import com.softsquared.template.kotlin.databinding.ActivitySearchDetailBinding
+import com.softsquared.template.kotlin.databinding.ActivitySearchCategoryBinding
 import com.softsquared.template.kotlin.src.main.CategoryAdapter
 import com.softsquared.template.kotlin.src.main.model.Category
 import com.softsquared.template.kotlin.src.search.SearchCategoryAdapter
 
 
-class SearchDetailActivity : BaseActivity<ActivitySearchDetailBinding>(ActivitySearchDetailBinding::inflate) {
+class SearchCateogryActivity : BaseActivity<ActivitySearchCategoryBinding>(ActivitySearchCategoryBinding::inflate) {
 
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var mRecyclerView: RecyclerView

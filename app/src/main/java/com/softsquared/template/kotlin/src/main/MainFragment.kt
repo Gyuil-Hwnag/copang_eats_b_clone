@@ -30,16 +30,24 @@ import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.main.model.Category
 import com.softsquared.template.kotlin.src.coupon.model.coupon
 import com.softsquared.template.kotlin.src.best.model.best
-import com.softsquared.template.kotlin.src.main.model.MainDelivery
+import com.softsquared.template.kotlin.src.main_loc.MainLocService
+import com.softsquared.template.kotlin.src.main_loc.MainLocView
+import com.softsquared.template.kotlin.src.main_loc.model.MainLocResponse
+import com.softsquared.template.kotlin.src.main_other.MainDeliveryAdapter
 import com.softsquared.template.kotlin.src.main_new.NewDeliveryAdapter
 import com.softsquared.template.kotlin.src.main_new.NewDeliveryService
 import com.softsquared.template.kotlin.src.main_new.NewDeliveryView
 import com.softsquared.template.kotlin.src.main_new.model.NewDeliveryResponse
 import com.softsquared.template.kotlin.src.main_new.model.new_delivery
+import com.softsquared.template.kotlin.src.main_other.model.other
+import com.softsquared.template.kotlin.src.main_other.model.otherResponse
+import com.softsquared.template.kotlin.src.main_other.otherService
+import com.softsquared.template.kotlin.src.main_other.otherView
+import java.sql.Types.NULL
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind, R.layout.fragment_main),
-    EventView, CouponView, BestView, NewDeliveryView {
+    EventView, CouponView, BestView, NewDeliveryView, otherView, MainLocView {
 
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var mRecyclerView: RecyclerView
@@ -57,9 +65,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     lateinit var newDeliveryAdapter: NewDeliveryAdapter
     lateinit var newDeliveryRecyclerView: RecyclerView
 
-    var MainDeliveryList = ArrayList<MainDelivery>()
-    lateinit var MainDeliveryAdapter: MainDeliveryAdapter
-    lateinit var MainDeliveryRecyclerView: RecyclerView
+    var otherList = ArrayList<other>()
+    lateinit var otherAdapter: MainDeliveryAdapter
+    lateinit var otherRecyclerView: RecyclerView
 
     var sliderItems: MutableList<String> = ArrayList()
 
@@ -85,6 +93,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             CouponService(this).tryGetCoupon(userId)
             BestService(this).tryGetBest(userId)
             NewDeliveryService(this).tryGetNewDelivery(userId)
+            otherService(this).tryGetOther(userId)
+            MainLocService(this).tryGetNewDelivery(userId)
         }
 
         binding.locMain.setOnClickListener {
@@ -129,26 +139,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         mRecyclerView = binding.recyclerItem
         mRecyclerView.adapter = categoryAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
-            false)
-
-
-        // Main Delivery
-        // revcycler view new_delivery
-        for(i in 0..3){
-            var item = MainDelivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/%EC%A7%9C%EC%9E%A5%EB%A9%B4.png",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            var item2 = MainDelivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EA%B3%A0%EA%B8%B0+%EC%84%B8%ED%8A%B8.jpg",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            var item3 = MainDelivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EB%83%89%EB%A9%B4+%EC%84%B8%ED%8A%B8.png",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            MainDeliveryList.add(item)
-            MainDeliveryList.add(item2)
-            MainDeliveryList.add(item3)
-        }
-        MainDeliveryAdapter = MainDeliveryAdapter(MainDeliveryList)
-        MainDeliveryRecyclerView = binding.recyclerItemMain
-        MainDeliveryRecyclerView.adapter = MainDeliveryAdapter
-        MainDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,
             false)
     }
 
@@ -288,5 +278,55 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     override fun onGetNewDeliveryFailure(message: String) {
         showCustomToast("오류 : $message")
         Log.d("fail123", "fail")
+    }
+
+    override fun onGetOtherSuccess(response: otherResponse) {
+        for(i in 0..response.result.size-1){
+            Log.d("slider", "")
+            var storeImageUrl = response.result.get(i).storeImageUrl
+            val Imgarr = storeImageUrl.split(",")
+            var storeName = response.result.get(i).storeName
+            var cheetahDelivery = response.result.get(i).cheetahDelivery
+            Log.d("nul123", "success")
+            if(cheetahDelivery == null){
+                Log.d("chita:null", "success")
+                cheetahDelivery = "NULL"
+            }
+            var averageDeliveryTime = response.result.get(i).averageDeliveryTime
+            var averageStarRating = response.result.get(i).averageStarRating
+            var reviewCount = response.result.get(i).reviewCount
+            var distance = response.result.get(i).distance
+            var deliveryTip = response.result.get(i).deliveryTip
+            var coupon = response.result.get(i).coupon
+            var menuList = response.result.get(i).menuList
+            var storeStatus = response.result.get(i).storeStatus
+
+            var item: other = other(Imgarr, storeName, cheetahDelivery, averageDeliveryTime, averageStarRating,
+                reviewCount, distance, deliveryTip, coupon, menuList, storeStatus)
+            otherList.add(item)
+        }
+        showCustomToast("성공")
+        Log.d("success123", "success")
+
+        otherAdapter = MainDeliveryAdapter(otherList)
+        otherRecyclerView = binding.recyclerItemMain
+        otherRecyclerView.adapter = otherAdapter
+        otherRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,
+            false)
+    }
+
+    override fun onGetOtherFailure(message: String) {
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "$message")
+    }
+
+    override fun onGetMainLocSuccess(response: MainLocResponse) {
+        var loc_name = response.result.get(0).addressLine
+        binding.locTxt.setText(loc_name)
+    }
+
+    override fun onGetMainLocFailure(message: String) {
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "$message")
     }
 }

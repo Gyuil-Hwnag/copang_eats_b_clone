@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.src.main.model.Category
-import com.softsquared.template.kotlin.src.searchDetail.SearchDetailActivity
+import com.softsquared.template.kotlin.src.searchDetail.SearchCateogryActivity
 
 class SearchCategoryAdapter(private val itemList : ArrayList<Category>) :
     RecyclerView.Adapter<SearchCategoryAdapter.ViewHolder>(){
@@ -33,7 +33,7 @@ class SearchCategoryAdapter(private val itemList : ArrayList<Category>) :
 
 
         holder.itemView.setOnClickListener {
-            var intent = Intent(holder.itemView?.context, SearchDetailActivity::class.java)
+            var intent = Intent(holder.itemView?.context, SearchCateogryActivity::class.java)
             val name = itemList.get(position).category_name
             intent.putExtra("category_name", name)
             ContextCompat.startActivity(holder.itemView.context, intent, null)

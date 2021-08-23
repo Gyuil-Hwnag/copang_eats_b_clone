@@ -226,8 +226,6 @@
                 android:textColor="@color/black">
             </TextView>
             <androidx.recyclerview.widget.RecyclerView
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="70dp"
                 android:id="@+id/recycler_item_main"
