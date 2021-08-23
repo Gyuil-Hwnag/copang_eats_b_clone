@@ -29,4 +29,8 @@
 
     <color name="like_background">#F4F5F7</color>
 
+    <color name="duskYellow">#FFEB3B</color>
+    <color name="lightGrey">#B5B9C3</color>
+
+
 </resources>

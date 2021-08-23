@@ -12,6 +12,7 @@ import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
+import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMapBinding
 import com.softsquared.template.kotlin.src.location.LocationActivity
@@ -54,6 +55,8 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
             var cameraPosition = naverMap.cameraPosition
             var intent = Intent(this, LocationDetailActivity::class.java)
             intent.putExtra("location", binding.locMainTxt.text)
+            intent.putExtra("latitude", naverMap.cameraPosition.target.latitude)
+            intent.putExtra("longitude", naverMap.cameraPosition.target.longitude)
             startActivity(intent)
 //            Log.d("position!!","대상 지점 위도: " + cameraPosition.target.latitude + ", " +
 //                    "대상 지점 경도: " + cameraPosition.target.longitude )
@@ -86,8 +89,8 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
         val uiSettings = naverMap.uiSettings
         uiSettings.isCompassEnabled = false // 나침반
         uiSettings.isScaleBarEnabled = false // 거리
-        uiSettings.isZoomControlEnabled = true // 줌
-        uiSettings.isLocationButtonEnabled = false // 내가 있는곳
+        uiSettings.isZoomControlEnabled = false // 줌
+        uiSettings.isLocationButtonEnabled = true // 내가 있는곳
 
         //맵 위치 변경시 리스너
         naverMap.addOnCameraChangeListener(this)
@@ -105,11 +108,13 @@ class MapActivity : BaseActivity<ActivityMapBinding>(ActivityMapBinding::inflate
     //지도가 이동시에 이동중임을 확인
     override fun onCameraChange(reason: Int, animated: Boolean) {
         mIsCameraAnimated = animated
+        binding.mark.setImageResource(R.drawable.ic_map_moving_preview_rev_1)
     }
 
     //지도가 멈춘 위치의 좌표로 API로 URL post
     override fun onCameraIdle() {
         if (mIsCameraAnimated) {
+            binding.mark.setImageResource(R.drawable.ic_map_mark_adobespark2)
             val cameraPosition = naverMap.getCameraPosition()
             var address = getAddress(this, cameraPosition.target.latitude, cameraPosition.target.longitude)
 //            showCustomToast("현재 주소 : "+address)

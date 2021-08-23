@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="32dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="40dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="상세 주소를 입력하세요"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="아파트명/동/호 등의 정보를 입력하시면 더 정확하게 배달할 수 있습니다."
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp" />
+
+    <Button
+    android:id="@+id/add_detail_btn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/loc_register"
+    android:textColor="@android:color/white"
+    android:textStyle="bold"
+    android:text="상세 주소 입력" />
+
+    <Button
+        android:id="@+id/dismiss_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_login"
+        android:textColor="@color/register_login_blue"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="무시하기" />
+
+</LinearLayout>

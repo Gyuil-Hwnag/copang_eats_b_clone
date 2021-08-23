@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.google.gson.annotations.SerializedName
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseFragment
 import com.softsquared.template.kotlin.databinding.FragmentMainBinding
 import com.softsquared.template.kotlin.src.best.BestAdapter
+import com.softsquared.template.kotlin.src.best.BestService
 import com.softsquared.template.kotlin.src.best.BestView
 import com.softsquared.template.kotlin.src.best.model.BestResponse
 import com.softsquared.template.kotlin.src.coupon.CouponAdapter
@@ -31,11 +31,15 @@ import com.softsquared.template.kotlin.src.main.model.Category
 import com.softsquared.template.kotlin.src.coupon.model.coupon
 import com.softsquared.template.kotlin.src.best.model.best
 import com.softsquared.template.kotlin.src.main.model.MainDelivery
-import com.softsquared.template.kotlin.src.main.model.new_delivery
+import com.softsquared.template.kotlin.src.main_new.NewDeliveryAdapter
+import com.softsquared.template.kotlin.src.main_new.NewDeliveryService
+import com.softsquared.template.kotlin.src.main_new.NewDeliveryView
+import com.softsquared.template.kotlin.src.main_new.model.NewDeliveryResponse
+import com.softsquared.template.kotlin.src.main_new.model.new_delivery
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind, R.layout.fragment_main),
-    EventView, CouponView, BestView {
+    EventView, CouponView, BestView, NewDeliveryView {
 
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var mRecyclerView: RecyclerView
@@ -79,6 +83,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             Log.d("X-ACCESS-TOKEN", jwt.toString())
             EventService(this).tryPostEvent(userId)
             CouponService(this).tryGetCoupon(userId)
+            BestService(this).tryGetBest(userId)
+            NewDeliveryService(this).tryGetNewDelivery(userId)
         }
 
         binding.locMain.setOnClickListener {
@@ -125,51 +131,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         mRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
             false)
 
-        // revcycler view 인기 프랜차이즈
-        for(i in 0..3){
-            var item = best("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/%EC%A7%9C%EC%9E%A5%EB%A9%B4.png",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            var item2 = best("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EA%B3%A0%EA%B8%B0+%EC%84%B8%ED%8A%B8.jpg",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            var item3 = best("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EB%83%89%EB%A9%B4+%EC%84%B8%ED%8A%B8.png",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            bestList.add(item)
-            bestList.add(item2)
-            bestList.add(item3)
-        }
-
-        bestAdapter = BestAdapter(bestList)
-        bestRecyclerView = binding.recyclerItemBest
-        bestRecyclerView.adapter = bestAdapter
-        bestRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
-            false)
-
-        // revcycler view coupon
-//        couponList.add(coupon(R.drawable.img_category1, "신규 맛집", "4,000원 할인", R.drawable.img_category1))
-
-        couponAdapter = CouponAdapter(couponList)
-        couponRecyclerView = binding.recyclerItemCoupon
-        couponRecyclerView.adapter = couponAdapter
-        couponRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
-            false)
-
-        // revcycler view new_delivery
-        for(i in 0..3){
-            var item = new_delivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/%EC%A7%9C%EC%9E%A5%EB%A9%B4.png",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            var item2 = new_delivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EA%B3%A0%EA%B8%B0+%EC%84%B8%ED%8A%B8.jpg",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            var item3 = new_delivery("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/1%EC%9D%B8+%EB%83%89%EB%A9%B4+%EC%84%B8%ED%8A%B8.png",
-                "버거킹 약수점", 0, 4.3F, 356, 3.0F, 1000, "정상영엽")
-            newDeliveryList.add(item)
-            newDeliveryList.add(item2)
-            newDeliveryList.add(item3)
-        }
-        newDeliveryAdapter = NewDeliveryAdapter(newDeliveryList)
-        newDeliveryRecyclerView = binding.recyclerItemNew
-        newDeliveryRecyclerView.adapter = newDeliveryAdapter
-        newDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
-            false)
 
         // Main Delivery
         // revcycler view new_delivery
@@ -189,9 +150,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         MainDeliveryRecyclerView.adapter = MainDeliveryAdapter
         MainDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,
             false)
-
-
-
     }
 
     override fun onDestroy() {
@@ -270,30 +228,65 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     }
 
     override fun onGetCouponFailure(message: String) {
-        TODO("Not yet implemented")
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "fail")
     }
 
     override fun onGetBestSuccess(response: BestResponse) {
-//        for(i in 0..response.result.size-1){
-//            Log.d("slider", "")
-//           var best = response.result.get(2)
-//            var coupon_Img = response.result.get(i).storeImageUrl
-//            var coupon_name = response.result.get(i).storeName
-//            var coupon_price = response.result.get(i).salePrice
-//            var coupon: coupon = coupon(coupon_name,coupon_Img, coupon_price)
-//            couponList.add(coupon)
-//        }
-//        showCustomToast("성공")
-//        Log.d("success123", "success")
-//
-//        couponAdapter = CouponAdapter(couponList)
-//        couponRecyclerView = binding.recyclerItemCoupon
-//        couponRecyclerView.adapter = couponAdapter
-//        couponRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
-//            false)
+        for(i in 0..response.result.size-1){
+            Log.d("slider", "")
+            var storeImageUrl = response.result.get(i).storeImageUrl
+            var storeName = response.result.get(i).storeName
+            var averageStar = response.result.get(i).averageStarRating
+            var reviewCount = response.result.get(i).reviewCount
+            var distance = response.result.get(i).distance
+            var deliveryTip = response.result.get(i).deliveryTip
+            var storeStatus = response.result.get(i).storeStatus
+
+            var best: best = best(storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
+            bestList.add(best)
+        }
+        showCustomToast("성공")
+        Log.d("success123", "success")
+
+        bestAdapter = BestAdapter(bestList)
+        bestRecyclerView = binding.recyclerItemBest
+        bestRecyclerView.adapter = bestAdapter
+        bestRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            false)
     }
 
     override fun onGetBestFailure(message: String) {
-        TODO("Not yet implemented")
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "fail")
+    }
+
+    override fun onGetNewDeliverySuccess(response: NewDeliveryResponse) {
+        for(i in 0..response.result.size-1){
+            Log.d("slider", "")
+            var storeImageUrl = response.result.get(i).storeImageUrl
+            var storeName = response.result.get(i).storeName
+            var averageStar = response.result.get(i).averageStarRating
+            var reviewCount = response.result.get(i).reviewCount
+            var distance = response.result.get(i).distance
+            var deliveryTip = response.result.get(i).deliveryTip
+            var storeStatus = response.result.get(i).storeStatus
+
+            var newDelivery: new_delivery = new_delivery(storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
+            newDeliveryList.add(newDelivery)
+        }
+        showCustomToast("성공")
+        Log.d("success123", "success")
+
+        newDeliveryAdapter = NewDeliveryAdapter(newDeliveryList)
+        newDeliveryRecyclerView = binding.recyclerItemNew
+        newDeliveryRecyclerView.adapter = newDeliveryAdapter
+        newDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            false)
+    }
+
+    override fun onGetNewDeliveryFailure(message: String) {
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "fail")
     }
 }

@@ -15,4 +15,9 @@
         <item name="tabBackground">@drawable/selector_tab</item>
         <item name="tabSelectedTextColor">?android:textColorPrimary</item>
     </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/lightGrey</item>
+        <item name="colorControlActivated">#F6BB25</item>
+    </style>
 </resources>

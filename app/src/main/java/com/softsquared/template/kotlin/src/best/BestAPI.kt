@@ -8,6 +8,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface BestAPI {
-    @GET("app/stores/{userId}/main")
+    @GET("app/stores/{userId}/main-popular")
     fun getBest(@Path("userId") userId: Int): Call<BestResponse>
 }

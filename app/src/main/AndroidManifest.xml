@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:hardwareAccelerated="true"
         android:name=".config.ApplicationClass"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -33,6 +34,16 @@
 
         <activity
             android:name=".src.like.LikeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".src.delivery_detail.DeliveryDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".src.loc_add.LocationAddActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

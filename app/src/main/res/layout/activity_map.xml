@@ -16,6 +16,7 @@
     </com.naver.maps.map.MapView>
 
     <ImageView
+        android:id="@+id/mark"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_map_mark_adobespark2"

@@ -1,14 +1,17 @@
 package com.softsquared.template.kotlin.src.main
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.src.best.model.best
+import com.softsquared.template.kotlin.src.delivery_detail.DeliveryDetailActivity
 import com.softsquared.template.kotlin.src.main.model.MainDelivery
 
 class MainDeliveryAdapter(private val itemList : ArrayList<MainDelivery>) :
@@ -44,12 +47,12 @@ class MainDeliveryAdapter(private val itemList : ArrayList<MainDelivery>) :
         holder.deliveryTip.setText("배달비 "+itemList.get(position).deliveryTip+"원")
 
 
-//        holder.itemView.setOnClickListener {
-//            var intent = Intent(holder.itemView?.context, SearchDetailActivity::class.java)
+        holder.itemView.setOnClickListener {
+            var intent = Intent(holder.itemView?.context, DeliveryDetailActivity::class.java)
 //            val name = itemList.get(position).coupon_name
 //            intent.putExtra("category_name", name)
-//            ContextCompat.startActivity(holder.itemView.context, intent, null)
-//        }
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
+        }
     }
 
     override fun getItemCount(): Int {
