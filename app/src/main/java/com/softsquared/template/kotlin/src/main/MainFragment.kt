@@ -30,6 +30,7 @@ import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.main.model.Category
 import com.softsquared.template.kotlin.src.coupon.model.coupon
 import com.softsquared.template.kotlin.src.best.model.best
+import com.softsquared.template.kotlin.src.event.EventAllActivity
 import com.softsquared.template.kotlin.src.main_loc.MainLocService
 import com.softsquared.template.kotlin.src.main_loc.MainLocView
 import com.softsquared.template.kotlin.src.main_loc.model.MainLocResponse
@@ -96,6 +97,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             NewDeliveryService(this).tryGetNewDelivery(userId)
             otherService(this).tryGetOther(userId)
             MainLocService(this).tryGetNewDelivery(userId)
+        }
+
+        binding.eventAllBtn.setOnClickListener {
+            var intent = Intent(context, EventAllActivity::class.java)
+            startActivity(intent)
         }
 
         binding.locMain.setOnClickListener {

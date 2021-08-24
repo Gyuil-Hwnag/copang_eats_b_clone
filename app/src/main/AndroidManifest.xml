@@ -68,6 +68,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".src.event.EventAllActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".src.login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

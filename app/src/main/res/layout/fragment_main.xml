@@ -86,6 +86,24 @@
                 app:layout_constraintTop_toTopOf="parent">
             </androidx.viewpager2.widget.ViewPager2>
 
+            <TextView
+                android:id="@+id/event_all_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이벤트 전체 보기"
+                android:textSize="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/vp_image_slider"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/event_all_shape"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+            </TextView>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_item"
                 android:layout_width="match_parent"
