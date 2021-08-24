@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.softsquared.template.kotlin.R
+import com.softsquared.template.kotlin.src.event.EventService
 import com.softsquared.template.kotlin.src.location.model.location
 import com.softsquared.template.kotlin.src.searchDetail.SearchCateogryActivity
 
@@ -41,12 +42,8 @@ class LocationAdapter(private val itemList : ArrayList<location>) :
         holder.category_txt.setText(itemList.get(position).basic_address)
         holder.category_sub_txt.setText(itemList.get(position).detail_address)
 
-//        holder.itemView.setOnClickListener {
-//            var intent = Intent(holder.itemView?.context, SearchCateogryActivity::class.java)
-//            val name = itemList.get(position).category_name
-//            intent.putExtra("category_name", name)
-//            ContextCompat.startActivity(holder.itemView.context, intent, null)
-//        }
+        holder.itemView.setOnClickListener {
+        }
     }
 
     override fun getItemCount(): Int {

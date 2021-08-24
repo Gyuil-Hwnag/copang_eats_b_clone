@@ -14,6 +14,7 @@ import com.softsquared.template.kotlin.databinding.ActivityMainBinding
 import com.softsquared.template.kotlin.src.event.EventView
 import com.softsquared.template.kotlin.src.like.LikeActivity
 import com.softsquared.template.kotlin.src.login.LoginActivity
+import com.softsquared.template.kotlin.src.mylike.MyLikeActivity
 import com.softsquared.template.kotlin.src.mypage.MyPageFragment
 import com.softsquared.template.kotlin.src.register.RegisterActivity
 import com.softsquared.template.kotlin.src.search.SearchFragment
@@ -49,7 +50,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.menu_main_btm_nav_mark -> {
-                        var intent = Intent(this, LikeActivity::class.java)
+//                        var intent = Intent(this, LikeActivity::class.java)
+//                        startActivity(intent)
+                        var intent = Intent(this, MyLikeActivity::class.java)
                         startActivity(intent)
                     }
                     R.id.menu_main_btm_nav_shop -> {

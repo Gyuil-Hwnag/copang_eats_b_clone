@@ -53,6 +53,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".src.menu_detail.MenuDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".src.loc_add.LocationAddActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -79,6 +84,11 @@
 
         <activity
             android:name=".src.location.LocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".src.mylike.MyLikeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
