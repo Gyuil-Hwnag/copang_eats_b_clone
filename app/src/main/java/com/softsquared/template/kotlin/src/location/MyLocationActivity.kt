@@ -8,15 +8,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityLocationBinding
+import com.softsquared.template.kotlin.databinding.ActivityMyLocationBinding
 import com.softsquared.template.kotlin.src.location.model.LocationResponse
 import com.softsquared.template.kotlin.src.location.model.location
 import com.softsquared.template.kotlin.src.main.MainActivity
 import com.softsquared.template.kotlin.src.main_other.MainDeliveryAdapter
 import com.softsquared.template.kotlin.src.main_other.model.other
 import com.softsquared.template.kotlin.src.map.MapActivity
+import com.softsquared.template.kotlin.src.mypage.MyPageFragment
 
 
-class LocationActivity : BaseActivity<ActivityLocationBinding>(ActivityLocationBinding::inflate), LocationView{
+class MyLocationActivity : BaseActivity<ActivityMyLocationBinding>(ActivityMyLocationBinding::inflate), LocationView{
 
     var locationList = ArrayList<location>()
     lateinit var locationAdapter: LocationAdapter
@@ -29,13 +31,14 @@ class LocationActivity : BaseActivity<ActivityLocationBinding>(ActivityLocationB
         var userId = text.getInt("userId", 0)
         LocationService(this).tryGetLocation(userId)
 
-        binding.mapChangeBtn.setOnClickListener {
-            var intent = Intent(this, MapActivity::class.java)
-            startActivity(intent)
-        }
 
-        binding.closeBtn.setOnClickListener {
-            var intent = Intent(this, MainActivity::class.java)
+//        binding.closeBtn.setOnClickListener {
+//            var intent = Intent(this, MyPageFragment::class.java)
+//            startActivity(intent)
+//        }
+
+        binding.locTxt.setOnClickListener {
+            var intent = Intent(this, LocationActivity::class.java)
             startActivity(intent)
         }
     }

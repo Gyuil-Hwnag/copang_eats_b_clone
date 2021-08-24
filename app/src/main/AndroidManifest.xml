@@ -38,6 +38,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".src.location.MyLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".src.like.LikeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

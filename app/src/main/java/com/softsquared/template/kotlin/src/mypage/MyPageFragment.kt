@@ -9,6 +9,7 @@ import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseFragment
 import com.softsquared.template.kotlin.databinding.FragmentMyPageBinding
 import com.softsquared.template.kotlin.src.location.LocationActivity
+import com.softsquared.template.kotlin.src.location.MyLocationActivity
 import com.softsquared.template.kotlin.src.mycoupon.MyCouponActivity
 import com.softsquared.template.kotlin.src.mypage.model.UserInfoResponse
 
@@ -37,7 +38,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(FragmentMyPageBinding
         }
 
         binding.layout1.setOnClickListener {
-            var intent = Intent(context, LocationActivity::class.java)
+            var intent = Intent(context, MyLocationActivity::class.java)
             startActivity(intent)
         }
     }

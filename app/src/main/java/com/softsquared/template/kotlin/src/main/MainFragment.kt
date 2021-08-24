@@ -43,6 +43,7 @@ import com.softsquared.template.kotlin.src.main_other.model.other
 import com.softsquared.template.kotlin.src.main_other.model.otherResponse
 import com.softsquared.template.kotlin.src.main_other.otherService
 import com.softsquared.template.kotlin.src.main_other.otherView
+import com.softsquared.template.kotlin.src.search_detail.SearchDetailActivity
 import java.sql.Types.NULL
 
 
@@ -106,6 +107,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
                 var intent = Intent(context, LocationActivity::class.java)
                 startActivity(intent)
             }
+        }
+        binding.searchBtn.setOnClickListener {
+            var intent = Intent(context, SearchDetailActivity::class.java)
+            startActivity(intent)
         }
 
         // revcycler view category
