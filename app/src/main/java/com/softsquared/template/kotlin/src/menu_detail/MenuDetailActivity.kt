@@ -12,8 +12,11 @@ import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityMainBinding
 import com.softsquared.template.kotlin.databinding.ActivityMenuDetailBinding
+import com.softsquared.template.kotlin.src.delivery_detail.DeliveryDetailActivity
+import com.softsquared.template.kotlin.src.delivery_detail.DeliveryMenuAdapter
 import com.softsquared.template.kotlin.src.event.EventView
 import com.softsquared.template.kotlin.src.like.LikeActivity
+import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.login.LoginActivity
 import com.softsquared.template.kotlin.src.mylike.MyLikeActivity
 import com.softsquared.template.kotlin.src.mypage.MyPageFragment
@@ -32,14 +35,30 @@ class MenuDetailActivity : BaseActivity<ActivityMenuDetailBinding>(ActivityMenuD
         var login_status_jwt = text.getString("X-ACCESS-TOKEN", null)
         var login_status_userIdx = text.getInt("userIdx", -1)
 //        showCustomToast("jwt : "+login_status_jwt)
+        binding.name.setText(intent.getStringExtra("menu_name").toString())
+        var price = intent.getIntExtra("menu_price", 0)
+        var new_price = price
+        binding.subName.setText(intent.getStringExtra("menu_description").toString())
+        binding.priceTxt.setText(price.toString()+"원")
 
         binding.addBtn.setOnClickListener {
             var count: Int = binding.txtCount.text.toString().toInt()
             count = count+1
+            new_price+=price
+            binding.txtCount.text = count.toString()
         }
         binding.subBtn.setOnClickListener {
             var count: Int = binding.txtCount.text.toString().toInt()
             count = count-1
+            if(count == 0){
+                count = 1
+            }
+            binding.txtCount.text = count.toString()
+        }
+        binding.cartRegister.setOnClickListener {
+            var intent = Intent(this, DeliveryDetailActivity::class.java)
+            intent.putExtra("price", new_price)
+            startActivity(intent)
         }
     }
 }

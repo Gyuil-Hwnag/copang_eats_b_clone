@@ -96,7 +96,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             BestService(this).tryGetBest(userId)
             NewDeliveryService(this).tryGetNewDelivery(userId)
             otherService(this).tryGetOther(userId)
-            MainLocService(this).tryGetNewDelivery(userId)
+            var location = text.getString("location" , null)
+            if(location == null){
+                MainLocService(this).tryGetNewDelivery(userId)
+            }
+            else{
+                binding.locTxt.text = location
+            }
         }
 
         binding.eventAllBtn.setOnClickListener {

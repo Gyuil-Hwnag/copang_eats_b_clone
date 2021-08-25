@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.src.loc_add.LocationAddActivity
 import com.softsquared.template.kotlin.src.login.LoginActivity
+import com.softsquared.template.kotlin.src.main.MainActivity
 import com.softsquared.template.kotlin.src.register.RegisterActivity
 
 class LocBottomSheet() : BottomSheetDialogFragment(){
@@ -32,7 +33,7 @@ class LocBottomSheet() : BottomSheetDialogFragment(){
 
         view?.findViewById<Button>(R.id.dismiss_btn)?.setOnClickListener {
             dismiss()
-            var intent = Intent(context, LocationAddActivity::class.java)
+            var intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
     }

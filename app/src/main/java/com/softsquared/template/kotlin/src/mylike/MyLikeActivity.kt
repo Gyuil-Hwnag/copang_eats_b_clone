@@ -19,6 +19,7 @@ import com.softsquared.template.kotlin.databinding.ActivityMainBinding
 import com.softsquared.template.kotlin.databinding.ActivityMyLikeBinding
 import com.softsquared.template.kotlin.databinding.ActivityMyLocationBinding
 import com.softsquared.template.kotlin.src.event.EventView
+import com.softsquared.template.kotlin.src.like.LikeActivity
 import com.softsquared.template.kotlin.src.login.LoginActivity
 import com.softsquared.template.kotlin.src.main.MainActivity
 import com.softsquared.template.kotlin.src.main_other.MainDeliveryAdapter
@@ -46,37 +47,43 @@ class MyLikeActivity : BaseActivity<ActivityMyLikeBinding>(ActivityMyLikeBinding
     }
 
     override fun onGetmylikeSuccess(response: mylikeResponse) {
-        binding.countTxt.setText("총 "+response.result.Bookmark_Store_Count.get(0).count)
-        var result = response.result.Bookmark_Store
-        for(i in 0..result.size-1){
-            Log.d("slider", "")
-            var storeImageUrl = result.get(i).storeImageUrl
-            var storeName = result.get(i).storeName
-            var cheetahDelivery = result.get(i).cheetahDelivery
-            Log.d("nul123", "success")
-            if(cheetahDelivery == null){
-                Log.d("chita:null", "success")
-                cheetahDelivery = "NULL"
-            }
-            var averageDeliveryTime = result.get(i).averageDeliveryTime
-            var averageStarRating = result.get(i).averageStarRating
-            var reviewCount = result.get(i).reviewCount
-            var distance = result.get(i).distance
-            var deliveryTip = result.get(i).deliveryTip
-            var storeStatus = result.get(i).storeStatus
-
-            var item: mylike = mylike(storeImageUrl, storeName, cheetahDelivery, averageDeliveryTime, averageStarRating,
-                reviewCount, distance, deliveryTip, storeStatus)
-            mylikeList.add(item)
+        if(response.result.Bookmark_Store_Count.get(0).count == "0개"){
+            var intent = Intent(this, LikeActivity::class.java)
+            startActivity(intent)
         }
-        showCustomToast("성공")
-        Log.d("success123", "success")
+        else{
+            var result = response.result.Bookmark_Store
+            binding.countTxt.setText(response.result.Bookmark_Store_Count.get(0).count.toString())
+            for(i in 0..result.size-1){
+                Log.d("slider", "")
+                var storeImageUrl = result.get(i).storeImageUrl
+                var storeName = result.get(i).storeName
+                var cheetahDelivery = result.get(i).cheetahDelivery
+                Log.d("nul123", "success")
+                if(cheetahDelivery == null){
+                    Log.d("chita:null", "success")
+                    cheetahDelivery = "NULL"
+                }
+                var averageDeliveryTime = result.get(i).averageDeliveryTime
+                var averageStarRating = result.get(i).averageStarRating
+                var reviewCount = result.get(i).reviewCount
+                var distance = result.get(i).distance
+                var deliveryTip = result.get(i).deliveryTip
+                var storeStatus = result.get(i).storeStatus
 
-        mylikeAdapter = mylikeAdapter(mylikeList)
-        mylikeRecyclerView = binding.recyclerItem
-        mylikeRecyclerView.adapter = mylikeAdapter
-        mylikeRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
-            false)
+                var item: mylike = mylike(storeImageUrl, storeName, cheetahDelivery, averageDeliveryTime, averageStarRating,
+                    reviewCount, distance, deliveryTip, storeStatus)
+                mylikeList.add(item)
+            }
+            showCustomToast("성공")
+            Log.d("likeSuccess", "success")
+
+            mylikeAdapter = mylikeAdapter(mylikeList)
+            mylikeRecyclerView = binding.recyclerItem
+            mylikeRecyclerView.adapter = mylikeAdapter
+            mylikeRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
+                false)
+        }
     }
 
     override fun onGetmylikeFailure(message: String) {

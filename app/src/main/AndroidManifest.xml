@@ -43,6 +43,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".src.my_cart.MyCartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".src.like.LikeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

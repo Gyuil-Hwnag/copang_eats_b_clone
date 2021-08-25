@@ -24,23 +24,23 @@ class OrderHistoryFragment : BaseFragment<FragmentOrderHistoryBinding>(FragmentO
         var userId = text.getInt("userId", 0)
         var jwt = text.getString("X-ACCESS-TOKEN", null)
 
-        var viewPager = binding.viewpager
-
-        // 3. viewPager2 뷰 객체에 어댑터 적용하기
-        viewPager.adapter = MyPagerAdapter(this)
-
-        TabLayoutMediator(binding.tabs, viewPager) { tab, position ->
-            tab.text = "Title $position"
-            when (position) {
-                0 -> {
-//                    tab.setIcon(R.drawable.ic_launcher_foreground)
-                    tab.text = "과거 주문 내역"
-                }
-                1 -> {
-//                    tab.setIcon(R.drawable.ic_launcher_background)
-                    tab.text = "준비중"
-                }
-            }
-        }.attach()
+//        var viewPager = binding.viewpager
+//
+//        // 3. viewPager2 뷰 객체에 어댑터 적용하기
+//        viewPager.adapter = MyPagerAdapter(this)
+//
+//        TabLayoutMediator(binding.tabs, viewPager) { tab, position ->
+//            tab.text = "Title $position"
+//            when (position) {
+//                0 -> {
+////                    tab.setIcon(R.drawable.ic_launcher_foreground)
+//                    tab.text = "과거 주문 내역"
+//                }
+//                1 -> {
+////                    tab.setIcon(R.drawable.ic_launcher_background)
+//                    tab.text = "준비중"
+//                }
+//            }
+//        }.attach()
     }
 }

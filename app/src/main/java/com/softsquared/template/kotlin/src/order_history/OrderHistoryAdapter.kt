@@ -3,8 +3,6 @@ package com.example.week6
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.softsquared.template.kotlin.src.main.myPage.Map.MapFragment
-import com.softsquared.template.kotlin.src.main.myPage.Sea.SeaFragment
 import com.softsquared.template.kotlin.src.order_history.HistoryFragment
 import com.softsquared.template.kotlin.src.order_history.NotYetFragment
 

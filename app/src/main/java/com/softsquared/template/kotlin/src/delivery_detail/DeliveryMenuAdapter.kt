@@ -1,5 +1,6 @@
 package com.softsquared.template.kotlin.src.delivery_detail
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
@@ -7,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.src.delivery_detail.model.menu
 import com.softsquared.template.kotlin.src.delivery_detail.model.review
+import com.softsquared.template.kotlin.src.menu_detail.MenuDetailActivity
 
 class DeliveryMenuAdapter(private val itemList : ArrayList<menu>) :
     RecyclerView.Adapter<DeliveryMenuAdapter.ViewHolder>(){
@@ -44,12 +47,16 @@ class DeliveryMenuAdapter(private val itemList : ArrayList<menu>) :
         holder.description.setText(itemList.get(position).menuDescription)
 
 
-//        holder.itemView.setOnClickListener {
-//            var intent = Intent(holder.itemView?.context, SearchDetailActivity::class.java)
-//            val name = itemList.get(position).category_name
-//            intent.putExtra("category_name", name)
-//            ContextCompat.startActivity(holder.itemView.context, intent, null)
-//        }
+        holder.itemView.setOnClickListener {
+            var intent = Intent(holder.itemView?.context, MenuDetailActivity::class.java)
+            val name = itemList.get(position).menuName
+            val price = itemList.get(position).menuPrice
+            val description = itemList.get(position).menuDescription
+            intent.putExtra("menu_name", name)
+            intent.putExtra("menu_price", price)
+            intent.putExtra("menu_description", description)
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
+        }
     }
 
     override fun getItemCount(): Int {

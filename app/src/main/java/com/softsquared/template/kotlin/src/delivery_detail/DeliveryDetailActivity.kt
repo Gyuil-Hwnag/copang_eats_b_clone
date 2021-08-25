@@ -2,7 +2,9 @@ package com.softsquared.template.kotlin.src.delivery_detail
 
 import android.R.id
 import android.R.id.tabs
+import android.content.Intent
 import android.os.Bundle
+import android.view.View.GONE
 import android.widget.FrameLayout
 import androidx.appcompat.view.menu.MenuAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,7 @@ import com.softsquared.template.kotlin.config.BaseActivity
 import com.softsquared.template.kotlin.databinding.ActivityDeliveryDetailBinding
 import com.softsquared.template.kotlin.src.delivery_detail.model.menu
 import com.softsquared.template.kotlin.src.delivery_detail.model.review
+import com.softsquared.template.kotlin.src.my_cart.MyCartActivity
 
 
 class DeliveryDetailActivity : BaseActivity<ActivityDeliveryDetailBinding>(ActivityDeliveryDetailBinding::inflate) {
@@ -50,6 +53,19 @@ class DeliveryDetailActivity : BaseActivity<ActivityDeliveryDetailBinding>(Activ
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding.cartSee.setOnClickListener {
+            var intent = Intent(this, MyCartActivity::class.java)
+            startActivity(intent)
+        }
+
+        var price = intent.getIntExtra("price", 0)
+        if(price == 0){
+            binding.cartMain.visibility = GONE
+        }
+        else{
+            binding.cartPrice.setText(price.toString()+"원")
+        }
 
         for(i in 0..3){
             var item = review("https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/%EC%A7%9C%EC%9E%A5%EB%A9%B4.png",

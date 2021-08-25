@@ -34,6 +34,9 @@ class LocationDetailActivity : BaseActivity<ActivityLocationDetailBinding>(Activ
             if(binding.detail.text.toString() == "" || binding.subDetail.text.toString() == ""){
                 val bottomSheet = LocBottomSheet()
                 bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                var editor = text.edit()
+                editor.putString("location", binding.txtLocMain.text.toString())
+                editor.commit()
             }
             else{
                 val address = binding.txtLocMain.text.toString()
