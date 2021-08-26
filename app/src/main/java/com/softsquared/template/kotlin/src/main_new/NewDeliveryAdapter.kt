@@ -46,8 +46,14 @@ class NewDeliveryAdapter(private val itemList : ArrayList<new_delivery>) :
 
         holder.itemView.setOnClickListener {
             var intent = Intent(holder.itemView?.context, DeliveryDetailActivity::class.java)
-//            val name = itemList.get(position).coupon_name
-//            intent.putExtra("category_name", name)
+            val name = itemList.get(position).storeName
+            val img = itemList.get(position).storeImageUrl
+            var time = "20~26분"
+            val tip = itemList.get(position).deliveryTip
+            intent.putExtra("name", name)
+            intent.putExtra("img", img)
+            intent.putExtra("tip", tip)
+            intent.putExtra("time", time)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }

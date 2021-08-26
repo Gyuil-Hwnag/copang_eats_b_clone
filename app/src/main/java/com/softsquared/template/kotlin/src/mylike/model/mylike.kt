@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class mylike(
     @SerializedName("storeId") val storeId: Int,
-    @SerializedName("storeImageUrl") val storeImageUrl: List<String>,
+    @SerializedName("storeImageUrl") val storeImageUrl: String,
     @SerializedName("storeName") val storeName: String,
     @SerializedName("cheetahDelivery") val cheetahDelivery: String,
     @SerializedName("averageDeliveryTime") val averageDeliveryTime: String,

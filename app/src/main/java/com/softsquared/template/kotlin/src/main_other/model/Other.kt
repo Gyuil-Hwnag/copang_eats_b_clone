@@ -3,6 +3,7 @@ package com.softsquared.template.kotlin.src.main_other.model
 import com.google.gson.annotations.SerializedName
 
 data class other(
+    @SerializedName("storeId") val storeId: Int,
     @SerializedName("storeImageUrl") val storeImageUrl: List<String>,
     @SerializedName("storeName") val storeName: String,
     @SerializedName("cheetahDelivery") val cheetahDelivery: String,

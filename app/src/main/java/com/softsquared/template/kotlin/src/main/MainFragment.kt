@@ -30,6 +30,8 @@ import com.softsquared.template.kotlin.src.location.LocationActivity
 import com.softsquared.template.kotlin.src.main.model.Category
 import com.softsquared.template.kotlin.src.coupon.model.coupon
 import com.softsquared.template.kotlin.src.best.model.best
+import com.softsquared.template.kotlin.src.best_nonuser.nonuserBestService
+import com.softsquared.template.kotlin.src.best_nonuser.nonuserBestView
 import com.softsquared.template.kotlin.src.event.EventAllActivity
 import com.softsquared.template.kotlin.src.main_loc.MainLocService
 import com.softsquared.template.kotlin.src.main_loc.MainLocView
@@ -40,16 +42,21 @@ import com.softsquared.template.kotlin.src.main_new.NewDeliveryService
 import com.softsquared.template.kotlin.src.main_new.NewDeliveryView
 import com.softsquared.template.kotlin.src.main_new.model.NewDeliveryResponse
 import com.softsquared.template.kotlin.src.main_new.model.new_delivery
+import com.softsquared.template.kotlin.src.main_new_nonuser.nonuserNewDeliveryService
+import com.softsquared.template.kotlin.src.main_new_nonuser.nonuserNewDeliveryView
 import com.softsquared.template.kotlin.src.main_other.model.other
 import com.softsquared.template.kotlin.src.main_other.model.otherResponse
 import com.softsquared.template.kotlin.src.main_other.otherService
 import com.softsquared.template.kotlin.src.main_other.otherView
+import com.softsquared.template.kotlin.src.main_other_nonuser.nonuserotherService
+import com.softsquared.template.kotlin.src.main_other_nonuser.nonuserotherView
 import com.softsquared.template.kotlin.src.search_detail.SearchDetailActivity
 import java.sql.Types.NULL
 
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind, R.layout.fragment_main),
-    EventView, CouponView, BestView, NewDeliveryView, otherView, MainLocView {
+    EventView, CouponView, BestView, NewDeliveryView, otherView, MainLocView, nonuserBestView, nonuserNewDeliveryView,
+    nonuserotherView{
 
     lateinit var categoryAdapter: CategoryAdapter
     lateinit var mRecyclerView: RecyclerView
@@ -96,6 +103,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             BestService(this).tryGetBest(userId)
             NewDeliveryService(this).tryGetNewDelivery(userId)
             otherService(this).tryGetOther(userId)
+
+            var location = text.getString("location" , null)
+            if(location == null){
+                MainLocService(this).tryGetNewDelivery(userId)
+            }
+            else{
+                binding.locTxt.text = location
+            }
+        }
+        else{
+            nonuserBestService(this).tryGetBest(37.563522165046F, 126.99917408401F)
+            nonuserNewDeliveryService(this).tryGetNewDelivery(37.563522165046F, 126.99917408401F)
+            nonuserotherService(this).tryGetOther(37.563522165046F, 126.99917408401F)
             var location = text.getString("location" , null)
             if(location == null){
                 MainLocService(this).tryGetNewDelivery(userId)
@@ -111,7 +131,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         }
 
         binding.locMain.setOnClickListener {
-            if(jwt == null){
+            if(userId == 0){
                 val bottomSheet = BottomSheet()
                 bottomSheet.show(getFragmentManager()!!, bottomSheet.tag)
             }
@@ -242,6 +262,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     override fun onGetBestSuccess(response: BestResponse) {
         for(i in 0..response.result.size-1){
             Log.d("slider", "")
+            var storeId = response.result.get(i).storeId
             var storeImageUrl = response.result.get(i).storeImageUrl
             var storeName = response.result.get(i).storeName
             var averageStar = response.result.get(i).averageStarRating
@@ -250,7 +271,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             var deliveryTip = response.result.get(i).deliveryTip
             var storeStatus = response.result.get(i).storeStatus
 
-            var best: best = best(storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
+            var best: best = best(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
             bestList.add(best)
         }
         showCustomToast("성공")
@@ -268,9 +289,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         Log.d("fail123", "fail")
     }
 
-    override fun onGetNewDeliverySuccess(response: NewDeliveryResponse) {
+    override fun onGetnonuserBestSuccess(response: BestResponse) {
         for(i in 0..response.result.size-1){
             Log.d("slider", "")
+            var storeId = response.result.get(i).storeId
             var storeImageUrl = response.result.get(i).storeImageUrl
             var storeName = response.result.get(i).storeName
             var averageStar = response.result.get(i).averageStarRating
@@ -279,7 +301,37 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             var deliveryTip = response.result.get(i).deliveryTip
             var storeStatus = response.result.get(i).storeStatus
 
-            var newDelivery: new_delivery = new_delivery(storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
+            var best: best = best(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
+            bestList.add(best)
+        }
+        showCustomToast("성공")
+        Log.d("success123", "success")
+
+        bestAdapter = BestAdapter(bestList)
+        bestRecyclerView = binding.recyclerItemBest
+        bestRecyclerView.adapter = bestAdapter
+        bestRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            false)
+    }
+
+    override fun onGetnonuserBestFailure(message: String) {
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "fail")
+    }
+
+    override fun onGetNewDeliverySuccess(response: NewDeliveryResponse) {
+        for(i in 0..response.result.size-1){
+            Log.d("slider", "")
+            var storeId = response.result.get(i).storeId
+            var storeImageUrl = response.result.get(i).storeImageUrl
+            var storeName = response.result.get(i).storeName
+            var averageStar = response.result.get(i).averageStarRating
+            var reviewCount = response.result.get(i).reviewCount
+            var distance = response.result.get(i).distance
+            var deliveryTip = response.result.get(i).deliveryTip
+            var storeStatus = response.result.get(i).storeStatus
+
+            var newDelivery: new_delivery = new_delivery(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
             newDeliveryList.add(newDelivery)
         }
         showCustomToast("성공")
@@ -297,9 +349,40 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         Log.d("fail123", "fail")
     }
 
+    override fun onGetnonuserNewDeliverySuccess(response: NewDeliveryResponse) {
+        for(i in 0..response.result.size-1){
+            Log.d("slider", "")
+            var storeId = response.result.get(i).storeId
+            var storeImageUrl = response.result.get(i).storeImageUrl
+            var storeName = response.result.get(i).storeName
+            var averageStar = response.result.get(i).averageStarRating
+            var reviewCount = response.result.get(i).reviewCount
+            var distance = response.result.get(i).distance
+            var deliveryTip = response.result.get(i).deliveryTip
+            var storeStatus = response.result.get(i).storeStatus
+
+            var newDelivery: new_delivery = new_delivery(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
+            newDeliveryList.add(newDelivery)
+        }
+        showCustomToast("성공")
+        Log.d("success123", "success")
+
+        newDeliveryAdapter = NewDeliveryAdapter(newDeliveryList)
+        newDeliveryRecyclerView = binding.recyclerItemNew
+        newDeliveryRecyclerView.adapter = newDeliveryAdapter
+        newDeliveryRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
+            false)
+    }
+
+    override fun onGetnonuserNewDeliveryFailure(message: String) {
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "fail")
+    }
+
     override fun onGetOtherSuccess(response: otherResponse) {
         for(i in 0..response.result.size-1){
             Log.d("slider", "")
+            var storeId = response.result.get(i).storeId
             var storeImageUrl = response.result.get(i).storeImageUrl
             val Imgarr = storeImageUrl.split(",")
             var storeName = response.result.get(i).storeName
@@ -318,7 +401,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             var menuList = response.result.get(i).menuList
             var storeStatus = response.result.get(i).storeStatus
 
-            var item: other = other(Imgarr, storeName, cheetahDelivery, averageDeliveryTime, averageStarRating,
+            var item: other = other(storeId, Imgarr, storeName, cheetahDelivery, averageDeliveryTime, averageStarRating,
                 reviewCount, distance, deliveryTip, coupon, menuList, storeStatus)
             otherList.add(item)
         }
@@ -333,6 +416,47 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     }
 
     override fun onGetOtherFailure(message: String) {
+        showCustomToast("오류 : $message")
+        Log.d("fail123", "$message")
+    }
+
+    override fun onGetnonuserOtherSuccess(response: otherResponse) {
+        for(i in 0..response.result.size-1){
+            Log.d("slider", "")
+            var storeId = response.result.get(i).storeId
+            var storeImageUrl = response.result.get(i).storeImageUrl
+            val Imgarr = storeImageUrl.split(",")
+            var storeName = response.result.get(i).storeName
+            var cheetahDelivery = response.result.get(i).cheetahDelivery
+            Log.d("nul123", "success")
+            if(cheetahDelivery == null){
+                Log.d("chita:null", "success")
+                cheetahDelivery = "NULL"
+            }
+            var averageDeliveryTime = response.result.get(i).averageDeliveryTime
+            var averageStarRating = response.result.get(i).averageStarRating
+            var reviewCount = response.result.get(i).reviewCount
+            var distance = response.result.get(i).distance
+            var deliveryTip = response.result.get(i).deliveryTip
+            var coupon = response.result.get(i).coupon
+            var menuList = response.result.get(i).menuList
+            var storeStatus = response.result.get(i).storeStatus
+
+            var item: other = other(storeId, Imgarr, storeName, cheetahDelivery, averageDeliveryTime, averageStarRating,
+                reviewCount, distance, deliveryTip, coupon, menuList, storeStatus)
+            otherList.add(item)
+        }
+        showCustomToast("성공")
+        Log.d("success123", "success")
+
+        otherAdapter = MainDeliveryAdapter(otherList)
+        otherRecyclerView = binding.recyclerItemMain
+        otherRecyclerView.adapter = otherAdapter
+        otherRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,
+            false)
+    }
+
+    override fun onGetnonuserOtherFailure(message: String) {
         showCustomToast("오류 : $message")
         Log.d("fail123", "$message")
     }

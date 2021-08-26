@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/img_delivery_menu"
-        android:layout_width="97dp"
-        android:layout_height="97dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/ic_loc_home_preview_rev_1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,8 +51,8 @@
         </TextView>
         <TextView
             android:id="@+id/txt_discription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="18dp"
             android:text="서울 중구 퇴계로 217 진양아파트 751호"
             android:textSize="12dp"
             android:layout_marginTop="10dp"

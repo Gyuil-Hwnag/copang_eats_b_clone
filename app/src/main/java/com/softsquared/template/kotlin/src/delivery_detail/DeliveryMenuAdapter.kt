@@ -51,10 +51,14 @@ class DeliveryMenuAdapter(private val itemList : ArrayList<menu>) :
             var intent = Intent(holder.itemView?.context, MenuDetailActivity::class.java)
             val name = itemList.get(position).menuName
             val price = itemList.get(position).menuPrice
+            val img = itemList.get(position).menuImageUrl
+            val idx = itemList.get(position).menuIdx
             val description = itemList.get(position).menuDescription
             intent.putExtra("menu_name", name)
             intent.putExtra("menu_price", price)
             intent.putExtra("menu_description", description)
+            intent.putExtra("menu_img", img)
+            intent.putExtra("menu_idx", idx)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }

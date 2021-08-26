@@ -20,16 +20,12 @@
                 android:layout_height="480dp"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/store_img"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_image_slider"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
-                    android:contentDescription="collapsing_tool_bar"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img_category1"
-                    app:layout_collapseMode="parallax"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+                </androidx.viewpager2.widget.ViewPager2>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/store_main"
@@ -52,7 +48,7 @@
                         app:layout_constraintRight_toRightOf="parent"
                         android:textSize="23dp"
                         android:textStyle="bold"
-                        android:text="더드림제육">
+                        android:text="BBQ 황금올리브 대림점">
                     </TextView>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -280,25 +276,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/appBarLayout">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_item1"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false">
-                </androidx.recyclerview.widget.RecyclerView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="fram1"
-                    android:textSize="30dp">
-                </TextView>
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:padding="20dp"
+                        android:text="추천치킨"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent">
+                    </TextView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_item1"
+                        app:layout_constraintTop_toBottomOf="@id/txt1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </FrameLayout>
 
             <View
                 android:id="@+id/line1"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:background="@color/register_btn_gray"
+                android:background="@color/edit_gray"
                 app:layout_constraintTop_toBottomOf="@id/fram1" />
 
             <FrameLayout
@@ -306,25 +315,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/fram1">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_item2"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false">
-                </androidx.recyclerview.widget.RecyclerView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="fram2"
-                    android:textSize="30dp">
-                </TextView>
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:padding="15dp"
+                        android:text="황올한 양념"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent">
+                    </TextView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_item2"
+                        app:layout_constraintTop_toBottomOf="@id/txt2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
 
             <View
                 android:id="@+id/line2"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:background="@color/register_btn_gray"
+                android:background="@color/edit_gray"
                 app:layout_constraintTop_toBottomOf="@id/fram2" />
 
             <FrameLayout
@@ -332,71 +353,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/fram2">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_item3"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false">
-                </androidx.recyclerview.widget.RecyclerView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="fram3"
-                    android:textSize="30dp">
-                </TextView>
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:padding="15dp"
+                        android:text="황올한 구이"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent">
+                    </TextView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_item3"
+                        app:layout_constraintTop_toBottomOf="@id/txt3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
 
-            <View
-                android:id="@+id/line3"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="@color/register_btn_gray"
-                app:layout_constraintTop_toBottomOf="@id/fram3" />
-
-            <FrameLayout
-                android:id="@+id/fram4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/fram3">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_item4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false">
-                </androidx.recyclerview.widget.RecyclerView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="fram4"
-                    android:textSize="30dp">
-                </TextView>
-            </FrameLayout>
-
-            <View
-                android:id="@+id/line4"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="@color/register_btn_gray"
-                app:layout_constraintTop_toBottomOf="@id/fram4" />
-
-            <FrameLayout
-                android:id="@+id/fram5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/fram4">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_item5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:nestedScrollingEnabled="false">
-                </androidx.recyclerview.widget.RecyclerView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="fram5"
-                    android:textSize="30dp">
-                </TextView>
-            </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -419,7 +401,7 @@
             android:paddingRight="6dp"
             android:background="@drawable/cart_count_shape"
             android:text="1"
-            android:textSize="16dp"
+            android:textSize="12dp"
             android:textColor="@color/register_login_blue"
             android:layout_marginRight="5dp">
         </TextView>
@@ -433,7 +415,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:text="카트보기"
             android:textColor="@color/white"
-            android:textSize="20dp">
+            android:textSize="15dp">
         </TextView>
         <TextView
             android:id="@+id/cart_price"
@@ -444,7 +426,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:text="28,000원"
             android:textColor="@color/white"
-            android:textSize="18dp">
+            android:textSize="15dp">
         </TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

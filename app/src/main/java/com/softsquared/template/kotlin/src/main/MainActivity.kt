@@ -16,6 +16,7 @@ import com.softsquared.template.kotlin.src.like.LikeActivity
 import com.softsquared.template.kotlin.src.login.LoginActivity
 import com.softsquared.template.kotlin.src.mylike.MyLikeActivity
 import com.softsquared.template.kotlin.src.mypage.MyPageFragment
+import com.softsquared.template.kotlin.src.order_history.HistoryFragment
 import com.softsquared.template.kotlin.src.register.RegisterActivity
 import com.softsquared.template.kotlin.src.search.SearchFragment
 
@@ -62,7 +63,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                         }
                         else{
                             supportFragmentManager.beginTransaction()
-                                .replace(R.id.main_frm, MainFragment())
+                                .replace(R.id.main_frm, HistoryFragment())
                                 .commitAllowingStateLoss()
                             return@OnNavigationItemSelectedListener true
                         }

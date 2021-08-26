@@ -47,16 +47,20 @@ class MyLikeActivity : BaseActivity<ActivityMyLikeBinding>(ActivityMyLikeBinding
     }
 
     override fun onGetmylikeSuccess(response: mylikeResponse) {
-        if(response.result.Bookmark_Store_Count.get(0).count == "0개"){
+        if(response.result.size == 0){
             var intent = Intent(this, LikeActivity::class.java)
             startActivity(intent)
         }
         else{
-            var result = response.result.Bookmark_Store
-            binding.countTxt.setText(response.result.Bookmark_Store_Count.get(0).count.toString())
+            var result = response.result
+            binding.countTxt.setText("총 "+response.result.size+"개")
+
             for(i in 0..result.size-1){
                 Log.d("slider", "")
-                var storeImageUrl = result.get(i).storeImageUrl
+                var storeId = result.get(i).storeId
+                var storeImageUrl1 = response.result.get(i).storeImageUrl
+                val Imgarr = storeImageUrl1.split(",")
+                var storeImageUrl = Imgarr.get(0)
                 var storeName = result.get(i).storeName
                 var cheetahDelivery = result.get(i).cheetahDelivery
                 Log.d("nul123", "success")
@@ -71,7 +75,7 @@ class MyLikeActivity : BaseActivity<ActivityMyLikeBinding>(ActivityMyLikeBinding
                 var deliveryTip = result.get(i).deliveryTip
                 var storeStatus = result.get(i).storeStatus
 
-                var item: mylike = mylike(storeImageUrl, storeName, cheetahDelivery, averageDeliveryTime, averageStarRating,
+                var item: mylike = mylike(storeId, storeImageUrl, storeName, cheetahDelivery, averageDeliveryTime, averageStarRating,
                     reviewCount, distance, deliveryTip, storeStatus)
                 mylikeList.add(item)
             }
