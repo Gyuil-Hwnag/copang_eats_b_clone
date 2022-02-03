@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.softsquared.template.kotlin.config.ApplicationClass
 import com.softsquared.template.kotlin.src.login.model.LoginResponse
 import com.softsquared.template.kotlin.src.login.model.PostLoginRequest
+import com.softsquared.template.kotlin.src.menu_detail.model.PostCartRegisterRequest
 import com.softsquared.template.kotlin.src.register.model.PostRegisterRequest
 import com.softsquared.template.kotlin.src.register.model.SignUpResponse
 import retrofit2.Call
@@ -11,7 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class AddCartService(val view: AddCartView) {
-    fun tryPostAddCart(userId: Int, postAddCartRequest: AddCartRequest){
+    fun tryPostAddCart(userId: Int, postAddCartRequest: PostCartRegisterRequest){
         val AddCartAPI = ApplicationClass.sRetrofit.create(AddCartAPI::class.java)
         AddCartAPI.postRegister(userId ,postAddCartRequest).enqueue(object :
             Callback<AddCartResponse> {

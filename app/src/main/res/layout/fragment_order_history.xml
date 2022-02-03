@@ -33,9 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            app:tabIndicatorColor="@color/design_default_color_primary"
-            app:tabRippleColor="@color/design_default_color_primary"
-            app:tabSelectedTextColor="@color/design_default_color_primary"
+            app:tabIndicatorColor="@color/lightGrey"
+            app:tabRippleColor="@color/lightGrey"
+            app:tabSelectedTextColor="@color/black"
             app:tabTextColor="@color/black" />
     </com.google.android.material.appbar.AppBarLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

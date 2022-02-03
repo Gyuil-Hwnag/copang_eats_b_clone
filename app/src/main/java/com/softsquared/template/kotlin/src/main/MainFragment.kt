@@ -78,7 +78,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     lateinit var otherAdapter: MainDeliveryAdapter
     lateinit var otherRecyclerView: RecyclerView
 
-    var sliderItems: MutableList<String> = ArrayList()
+    private var sliderItems: MutableList<String> = ArrayList()
 
     private val sliderHandler: Handler = Handler()
 
@@ -94,12 +94,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
         Log.d("Result!!", userId.toString()+" "+jwt)
 //        showCustomToast(userId.toString())
 
+        EventService(this).tryPostEvent()
+        CouponService(this).tryGetCoupon()
+
         if(userId != 0){
 //            showLoadingDialog(context!!)
             Log.d("userId", userId.toString())
             Log.d("X-ACCESS-TOKEN", jwt.toString())
-            EventService(this).tryPostEvent(userId)
-            CouponService(this).tryGetCoupon(userId)
             BestService(this).tryGetBest(userId)
             NewDeliveryService(this).tryGetNewDelivery(userId)
             otherService(this).tryGetOther(userId)
@@ -117,12 +118,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             nonuserNewDeliveryService(this).tryGetNewDelivery(37.563522165046F, 126.99917408401F)
             nonuserotherService(this).tryGetOther(37.563522165046F, 126.99917408401F)
             var location = text.getString("location" , null)
-            if(location == null){
-                MainLocService(this).tryGetNewDelivery(userId)
-            }
-            else{
-                binding.locTxt.text = location
-            }
+            binding.locTxt.text = location
+//            if(location == null){
+//                MainLocService(this).tryGetNewDelivery(userId)
+//            }
         }
 
         binding.eventAllBtn.setOnClickListener {
@@ -244,7 +243,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             var coupon: coupon = coupon(coupon_name,coupon_Img, coupon_price)
             couponList.add(coupon)
         }
-        showCustomToast("성공")
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         couponAdapter = CouponAdapter(couponList)
@@ -274,7 +273,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             var best: best = best(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
             bestList.add(best)
         }
-        showCustomToast("성공")
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         bestAdapter = BestAdapter(bestList)
@@ -304,7 +303,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             var best: best = best(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
             bestList.add(best)
         }
-        showCustomToast("성공")
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         bestAdapter = BestAdapter(bestList)
@@ -315,26 +314,41 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
     }
 
     override fun onGetnonuserBestFailure(message: String) {
-        showCustomToast("오류 : $message")
+//        showCustomToast("오류 : $message")
         Log.d("fail123", "fail")
     }
 
     override fun onGetNewDeliverySuccess(response: NewDeliveryResponse) {
-        for(i in 0..response.result.size-1){
-            Log.d("slider", "")
-            var storeId = response.result.get(i).storeId
-            var storeImageUrl = response.result.get(i).storeImageUrl
-            var storeName = response.result.get(i).storeName
-            var averageStar = response.result.get(i).averageStarRating
-            var reviewCount = response.result.get(i).reviewCount
-            var distance = response.result.get(i).distance
-            var deliveryTip = response.result.get(i).deliveryTip
-            var storeStatus = response.result.get(i).storeStatus
+        if(response.result.size == 1){
+            var storeId = response.result.get(0).storeId
+            var storeImageUrl = response.result.get(0).storeImageUrl
+            var storeName = response.result.get(0).storeName
+            var averageStar = response.result.get(0).averageStarRating
+            var reviewCount = response.result.get(0).reviewCount
+            var distance = response.result.get(0).distance
+            var deliveryTip = response.result.get(0).deliveryTip
+            var storeStatus = response.result.get(0).storeStatus
 
             var newDelivery: new_delivery = new_delivery(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
             newDeliveryList.add(newDelivery)
         }
-        showCustomToast("성공")
+        else{
+            for(i in 0..response.result.size-1){
+                Log.d("slider", "")
+                var storeId = response.result.get(i).storeId
+                var storeImageUrl = response.result.get(i).storeImageUrl
+                var storeName = response.result.get(i).storeName
+                var averageStar = response.result.get(i).averageStarRating
+                var reviewCount = response.result.get(i).reviewCount
+                var distance = response.result.get(i).distance
+                var deliveryTip = response.result.get(i).deliveryTip
+                var storeStatus = response.result.get(i).storeStatus
+
+                var newDelivery: new_delivery = new_delivery(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
+                newDeliveryList.add(newDelivery)
+            }
+        }
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         newDeliveryAdapter = NewDeliveryAdapter(newDeliveryList)
@@ -364,7 +378,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
             var newDelivery: new_delivery = new_delivery(storeId, storeImageUrl, storeName, averageStar, reviewCount, distance, deliveryTip, storeStatus)
             newDeliveryList.add(newDelivery)
         }
-        showCustomToast("성공")
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         newDeliveryAdapter = NewDeliveryAdapter(newDeliveryList)
@@ -405,7 +419,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
                 reviewCount, distance, deliveryTip, coupon, menuList, storeStatus)
             otherList.add(item)
         }
-        showCustomToast("성공")
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         otherAdapter = MainDeliveryAdapter(otherList)
@@ -446,7 +460,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::bind
                 reviewCount, distance, deliveryTip, coupon, menuList, storeStatus)
             otherList.add(item)
         }
-        showCustomToast("성공")
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         otherAdapter = MainDeliveryAdapter(otherList)

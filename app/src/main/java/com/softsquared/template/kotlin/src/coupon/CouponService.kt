@@ -8,9 +8,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CouponService(val view: CouponView) {
-    fun tryGetCoupon(userId: Int){
+    fun tryGetCoupon(){
         val couponAPI = ApplicationClass.sRetrofit.create(couponAPI::class.java)
-        couponAPI.getCoupon(userId).enqueue(object :
+        couponAPI.getCoupon().enqueue(object :
             Callback<CouponResponse> {
             override fun onResponse(call: Call<CouponResponse>, response: Response<CouponResponse>) {
                 view.onGetCouponSuccess(response.body() as CouponResponse)

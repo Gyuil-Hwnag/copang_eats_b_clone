@@ -7,6 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface couponAPI {
-    @GET("app/events/{userId}/coupon")
-    fun getCoupon(@Path("userId") userId: Int): Call<CouponResponse>
+    @GET("/app/events/coupon")
+    fun getCoupon(): Call<CouponResponse>
 }

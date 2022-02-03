@@ -31,8 +31,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     override fun onPostLoginSuccess(response: LoginResponse) {
         dismissLoadingDialog()
-        binding.loginBtn.text = response.message
-        response.message?.let { showCustomToast(it) }
+//        binding.loginBtn.text = response.message
+//        response.message?.let { showCustomToast(it) }
 
         // shared preference
         var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
-    android:padding="11dp">
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/img_categery_main"

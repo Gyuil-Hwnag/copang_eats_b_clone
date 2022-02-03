@@ -15,6 +15,7 @@ import com.softsquared.template.kotlin.R
 import com.softsquared.template.kotlin.src.delivery_detail.model.menu
 import com.softsquared.template.kotlin.src.delivery_detail.model.review
 import com.softsquared.template.kotlin.src.menu_detail.MenuDetailActivity
+import java.text.DecimalFormat
 
 class DeliveryMenuAdapter(private val itemList : ArrayList<menu>) :
     RecyclerView.Adapter<DeliveryMenuAdapter.ViewHolder>(){
@@ -43,7 +44,9 @@ class DeliveryMenuAdapter(private val itemList : ArrayList<menu>) :
             holder.img.visibility = INVISIBLE
         }
         holder.name.setText(itemList.get(position).menuName)
-        holder.price.setText(itemList.get(position).menuPrice.toString()+"원")
+        val t_dec_up = DecimalFormat("#,###")
+        var str_change_money_up = t_dec_up.format(itemList.get(position).menuPrice)
+        holder.price.setText(str_change_money_up+"원")
         holder.description.setText(itemList.get(position).menuDescription)
 
 

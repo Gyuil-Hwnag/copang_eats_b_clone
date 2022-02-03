@@ -39,8 +39,8 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
 
     override fun onPostLogoutSuccess(response: LogoutResponse) {
         dismissLoadingDialog()
-        binding.logoutBtn.text = response.message
-        response.message?.let { showCustomToast(it) }
+//        binding.logoutBtn.text = response.message
+//        response.message?.let { showCustomToast(it) }
 
         var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
         var editor = text.edit()

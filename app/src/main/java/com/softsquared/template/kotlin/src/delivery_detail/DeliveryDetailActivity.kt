@@ -170,7 +170,7 @@ class DeliveryDetailActivity : BaseActivity<ActivityDeliveryDetailBinding>(Activ
         menuList2.add(item3)
         menuList2.add(item4)
 
-        var item5 = menu(17,"자메이카 통다리구이", 19500,
+        var item5 = menu(17,"자메이카 통다리구이", 20000,
             "매콤달콤한 중남미풍의 저크소스를 발라 깊고 신바한 맛의 풍미",
             "https://s3.ap-northeast-2.amazonaws.com/img.castlejun-2.shop/CoupangEventImage/%EC%9E%90%EB%A9%94%EC%9D%B4%EC%B9%B4.PNG")
         var item6 = menu(18,"스모크치킨", 16000,
@@ -237,7 +237,7 @@ class DeliveryDetailActivity : BaseActivity<ActivityDeliveryDetailBinding>(Activ
 
     override fun onGetPreviewCartSuccess(response: PreviewCartResponse) {
         if(response.result.get(0).CartCount == 0){
-//            binding.cartMain.visibility = GONE
+            binding.cartMain.visibility = GONE
         }
         else{
             var price = response.result.get(0).SumPrice

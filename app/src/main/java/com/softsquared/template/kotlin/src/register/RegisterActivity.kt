@@ -56,18 +56,17 @@ class RegisterActivity : BaseActivity<ActivtyRegisterBinding>(ActivtyRegisterBin
             val password = binding.password.text.toString()
             val username = binding.name.text.toString()
             val phoneNumber = binding.phone.text.toString()
-            showCustomToast(phoneNumber)
+//            showCustomToast(phoneNumber)
             val postRequest = PostRegisterRequest(email = email, password = password,
                 username = username, phonenumber = "010-0000-0000")
-            showLoadingDialog(this)
             RegisterService(this).tryPostRegisterUp(postRequest)
         }
     }
 
     override fun onPostRegisterSuccess(response: SignUpResponse) {
         dismissLoadingDialog()
-        binding.registerBtn.text = response.message
-        response.message?.let { showCustomToast(it) }
+//        binding.registerBtn.text = response.message
+//        response.message?.let { showCustomToast(it) }
         var intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         Log.d("success111", "success")
@@ -75,7 +74,7 @@ class RegisterActivity : BaseActivity<ActivtyRegisterBinding>(ActivtyRegisterBin
 
     override fun onPostRegisterFailure(message: String) {
         dismissLoadingDialog()
-        showCustomToast("오류 : $message")
+//        showCustomToast("오류 : $message")
         Log.d("fail123", "fail")
     }
 }

@@ -50,7 +50,7 @@ class LocationActivity : BaseActivity<ActivityLocationBinding>(ActivityLocationB
             var item: location = location(locationImageUrl, mainloc, subloc)
             locationList.add(item)
         }
-        showCustomToast("성공")
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         locationAdapter = LocationAdapter(locationList)
@@ -61,7 +61,7 @@ class LocationActivity : BaseActivity<ActivityLocationBinding>(ActivityLocationB
     }
 
     override fun onGetLocationFailure(message: String) {
-        showCustomToast("오류 : $message")
+//        showCustomToast("오류 : $message")
         Log.d("fail123", "$message")
     }
 }

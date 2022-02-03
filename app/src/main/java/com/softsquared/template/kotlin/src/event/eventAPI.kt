@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface eventAPI {
-    @GET("/app/events/{userId}")
-    fun postEvent(@Path("userId") userId: Int): Call<EventResponse>
+    @GET("/app/events")
+    fun postEvent(): Call<EventResponse>
 }

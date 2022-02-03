@@ -42,7 +42,7 @@ class EventAllActivity : BaseActivity<ActivityEventAllBinding>(ActivityEventAllB
         var text = getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
         var userId = text.getInt("userIdx", -1)
 
-        EventService(this).tryPostEvent(userId)
+        EventService(this).tryPostEvent()
         binding.closeBtn.setOnClickListener {
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -56,7 +56,7 @@ class EventAllActivity : BaseActivity<ActivityEventAllBinding>(ActivityEventAllB
             var event: event = event(evnet_Img,0)
             eventList.add(event)
         }
-        showCustomToast("성공")
+//        showCustomToast("성공")
         Log.d("success123", "success")
 
         eventallAdapter = EventAllAdapter(eventList)

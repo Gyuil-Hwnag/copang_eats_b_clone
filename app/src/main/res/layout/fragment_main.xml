@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -108,7 +109,9 @@
                 android:id="@+id/recycler_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/vp_image_slider">
+                app:layout_constraintTop_toBottomOf="@id/vp_image_slider"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
             </androidx.recyclerview.widget.RecyclerView>
 
             <View
@@ -127,7 +130,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="17dp"
                 android:textStyle="bold"
-                android:padding="15dp"
+                android:padding="20dp"
                 android:textColor="@color/black">
             </TextView>
 
@@ -136,8 +139,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/txt_best"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="15dp">
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -173,8 +176,8 @@
                 android:layout_marginTop="5dp"
                 android:textSize="17dp"
                 android:textStyle="bold"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/black">
@@ -206,7 +209,7 @@
                 android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 android:textSize="17dp"
-                android:padding="15dp"
+                android:padding="20dp"
                 android:textColor="@color/black">
             </TextView>
 
@@ -215,8 +218,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/txt_new"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:paddingBottom="5dp">
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -236,8 +239,8 @@
                 android:layout_marginTop="5dp"
                 android:textSize="17dp"
                 android:textStyle="bold"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/black">

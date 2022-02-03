@@ -7,9 +7,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EventService(val view: EventView) {
-    fun tryPostEvent(userId: Int){
+    fun tryPostEvent(){
         val eventAPI = ApplicationClass.sRetrofit.create(eventAPI::class.java)
-        eventAPI.postEvent(userId).enqueue(object :
+        eventAPI.postEvent().enqueue(object :
             Callback<EventResponse> {
             override fun onResponse(call: Call<EventResponse>, response: Response<EventResponse>) {
                 view.onPostEventSuccess(response.body() as EventResponse)
