@@ -7,9 +7,7 @@
 6. Client & Server
 7. Jwt token, Refresh token
 
--- commit --
-Kotlin ver# coupang_eats_test_Android_Duru
-# coupang_eats_test_Android_Duru
+# Coupang_eats_test_Android_Duru
 1. 2021.08.14
   회원가입 화면구현 및 홈화면 viewpager2로 자동 광고 출력 기능 추가
 2. 2021.08.15
